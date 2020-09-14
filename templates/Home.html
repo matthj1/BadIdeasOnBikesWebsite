@@ -1,0 +1,15 @@
+{% extends "BASE.html" %}
+    {% block content %}
+        <h1>Home Page</h1>
+            {% for post in posts %}
+            <h1>
+                {{post.title}}
+            </h1>
+            <h3>
+                by {{post.author}} on {{post.date}}
+            </h3>
+            <p>
+                {{post.content}}
+            </p>
+        {% endfor %}
+    {% endblock content %}
