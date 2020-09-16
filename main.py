@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for
-from forms import RegistrationForm, LoginForm
+from flask import Flask, render_template, flash, redirect, url_for
+from BadIdeasOnBikes.My_Forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
@@ -19,6 +19,7 @@ posts = ({
 
 })
 
+
 @app.route("/")
 @app.route("/home")
 def homePage():
@@ -30,17 +31,22 @@ def aboutPage():
     return render_template("About.html")
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def registerPage():
     form = RegistrationForm()
-    return render_template("Register.html")
+    if form.validate_on_submit():
+        print("got here")
+        flash(f"account created for {form.username.data}", "success")
+        return redirect(url_for("homePage"))
+    else:
+        print("not valid?")
+    return render_template("Register.html", title="Register", form=form)
 
 
 @app.route("/login")
 def loginPage():
     form = LoginForm()
-    return render_template("Login.html")
-
+    return render_template("Login.html", title="Login", form=form)
 
 
 if __name__ == "__main__":
