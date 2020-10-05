@@ -1,33 +1,17 @@
 import secrets
 import os
 from PIL import Image
-from flask import render_template, flash, redirect, url_for, request
-from flaskbiob.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from flask import render_template, flash, redirect, url_for, request, abort
+from flaskbiob.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from flaskbiob import app, db, bcrypt
 from flaskbiob.models import Users, Posts
 from flask_login import login_user, logout_user, current_user, login_required
 from sqlalchemy import func
 
-posts = ({
-    "author": "Joe Matthews",
-    "title": "Kent Climbs",
-    "content": "This is a blog post about bike climbs in kent",
-    "date": "14/09/2020",
-    "image": "static/Chalkpit Lane.jpg"
-},
-    {
-    "author": "Joe Matthews",
-    "title": "Rutland Circuit",
-    "content": "This is a blog post about a bike ride in rutland",
-    "date": "13/09/2020",
-    "image": "static/Big.jpg"
-
-})
-
-
 @app.route("/")
 @app.route("/home")
 def homePage():
+    posts = Posts.query.all()
     return render_template("Home.html", posts=posts)
 
 
@@ -118,3 +102,42 @@ def accountPage():
         form.email.data = current_user.email
     image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
     return render_template("Account.html", title="Account", image_file=image_file, form=form)
+
+
+@app.route("/post/new", methods=["GET", "POST"])
+@login_required
+def newpostPage():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Posts(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash("Post created!", "success")
+        return redirect(url_for("homePage"))
+    return render_template("Create_Post.html", title="New Post", form=form)
+
+
+@app.route("/post/<post_id>", methods=["GET", "POST"])
+@login_required
+def postPage(post_id):
+    post = Posts.query.get_or_404(post_id)
+    return render_template("Post.html", title=post.title, post=post)
+
+
+@app.route("/post/<post_id>/update", methods=["GET", "POST"])
+@login_required
+def updatepostPage(post_id):
+    post = Posts.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash("Post updated!", "success")
+        return redirect(url_for("postPage", post_id=post_id))
+    elif request.method == "GET":
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template("Edit_Post.html", title="Edit Post", form=form)
