@@ -97,9 +97,9 @@ def save_post_picture(form_picture):
     size_x, size_y = image.size
 
     if size_x > size_y:
-        scale = size_y / max_dimension
-    else:
         scale = size_x / max_dimension
+    else:
+        scale = size_y / max_dimension
 
     new_dimensions = (size_x // scale, size_y // scale)
     image.thumbnail(new_dimensions)
@@ -145,7 +145,6 @@ def newpostPage():
 
 
 @app.route("/post/<post_id>", methods=["GET", "POST"])
-@login_required
 def postPage(post_id):
     post = Posts.query.get_or_404(post_id)
     return render_template("Post.html", title=post.title, post=post)
