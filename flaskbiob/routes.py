@@ -84,6 +84,30 @@ def save_picture(form_picture):
     return picture_fn
 
 
+def save_post_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/post_pics', picture_fn)
+
+    image = Image.open(form_picture)
+
+    max_dimension = 1600
+
+    size_x, size_y = image.size
+
+    if size_x > size_y:
+        scale = size_y / max_dimension
+    else:
+        scale = size_x / max_dimension
+
+    new_dimensions = (size_x // scale, size_y // scale)
+    image.thumbnail(new_dimensions)
+    image.save(picture_path)
+    print(picture_path)
+    return picture_fn
+
+
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def accountPage():
@@ -109,7 +133,10 @@ def accountPage():
 def newpostPage():
     form = PostForm()
     if form.validate_on_submit():
-        post = Posts(title=form.title.data, content=form.content.data, author=current_user)
+        post = Posts(title=form.title.data, leader=form.leader.data, content=form.content.data, author=current_user)
+        if form.post_image.data:
+            picture_file = save_post_picture(form.post_image.data)
+            post.post_image = picture_file
         db.session.add(post)
         db.session.commit()
         flash("Post created!", "success")
@@ -132,12 +159,17 @@ def updatepostPage(post_id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
+        if form.post_image.data:
+            picture_file = save_post_picture(form.post_image.data)
+            post.post_image = picture_file
         post.title = form.title.data
+        post.leader = form.leader.data
         post.content = form.content.data
         db.session.commit()
         flash("Post updated!", "success")
         return redirect(url_for("postPage", post_id=post_id))
     elif request.method == "GET":
         form.title.data = post.title
+        form.leader.data = post.leader
         form.content.data = post.content
     return render_template("Edit_Post.html", title="Edit Post", form=form)

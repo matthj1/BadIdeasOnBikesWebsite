@@ -23,7 +23,9 @@ class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    leader = db.Column(db.Text, nullable=False)
     content = db.Column(db.Text, nullable=False)
+    post_image = db.Column(db.String(100), nullable=False, default="default_post.jpg")
     user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     def __repr__(self):

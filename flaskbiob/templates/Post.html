@@ -1,11 +1,18 @@
 {% extends "BASE.html" %}
     {% block content %}
-            <div class="card mb-3">
-              <img src="{{ post.image }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">{{ post.content }}</p>
+            <div class="blog-post">
+              <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}" class="card-img-top" alt="...">
+
+                <h5>{{ post.title }}</h5>
+                <p class="card-text">{{ post.leader }}</p>
+                <hr>
+                  <p class="card-text">{{ post.content }}</p>
+                <p>{{ post.id }}</p>
                 <p class="card-text"><small class="text-muted">by {{ post.author.username }}</small></p>
-              </div>
+                <hr>
             </div>
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('updatepostPage', post_id=post.id) }}" class="btn btn-dark" role="button">Edit</a>
+        <a href="#" class="btn btn-dark" role="button">Delete</a>
+    {% endif %}
     {% endblock content %}

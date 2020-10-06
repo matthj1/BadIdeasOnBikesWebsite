@@ -2,10 +2,10 @@
     {% block content %}
         {% for post in posts %}
             <div class="card mb-3">
-              <img src="{{ post.image }}" class="card-img-top" alt="...">
+              <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">{{ post.content }}</p>
+                <p class="card-text">{{ post.leader }}</p>
                   <a href="{{ url_for('postPage', post_id = post.id) }}" class="btn btn-dark">Read More</a>
                 <p class="card-text"><small class="text-muted">by {{ post.author.username }}</small></p>
               </div>
