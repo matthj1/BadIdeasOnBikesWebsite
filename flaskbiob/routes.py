@@ -172,3 +172,15 @@ def updatepostPage(post_id):
         form.leader.data = post.leader
         form.content.data = post.content
     return render_template("Edit_Post.html", title="Edit Post", form=form)
+
+
+@app.route("/post/<post_id>/delete", methods=["POST"])
+@login_required
+def delete_post(post_id):
+    post = Posts.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    flash("Post deleted!", "success")
+    return redirect(url_for("homePage"))
