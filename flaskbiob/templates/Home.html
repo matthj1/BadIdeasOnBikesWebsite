@@ -1,6 +1,8 @@
 {% extends "BASE.html" %}
     {% block content %}
-        {% for post in posts %}
+    <div class="row py-3">
+        <div class="col" id="main">
+            {% for post in posts %}
             <div class="card mb-3">
               <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -10,5 +12,19 @@
                 <p class="card-text"><small class="text-muted">by {{ post.author.username }}</small></p>
               </div>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="col-4 order-2 px-5 border-left d-none d-lg-block" id="sticky-sidebar">
+            <div class="sticky-top">
+                <h5>My name is Joe and I’m obsessed with riding bikes</h5>
+                <hr>
+                <p>Bad Ideas on Bikes is very poorly named. It should be called excellent ideas on bikes because riding bikes is excellent and riding bikes stupidly far and up stupidly high or steep hills is excellent… to me. To everyone else it sounds terrible.</p>
+                <p>I made this site to share my passion. I want to share some of my favorite rides and routes and maybe even impart knowledge? Maybe that’s taking it too far!</p>
+                <p>I hope you enjoy reading some of the content here and it gives you a good (or bad!) idea for your next two wheeled adventure.</p>
+                <p>I’d love to hear from you!</p>
+                <p>dummy@email.com</p>
+            </div>
+        </div>
+    </div>
+
     {% endblock content %}
