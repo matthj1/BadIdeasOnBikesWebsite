@@ -104,7 +104,6 @@ def save_post_picture(form_picture):
     new_dimensions = (size_x // scale, size_y // scale)
     image.thumbnail(new_dimensions)
     image.save(picture_path)
-    print(picture_path)
     return picture_fn
 
 
