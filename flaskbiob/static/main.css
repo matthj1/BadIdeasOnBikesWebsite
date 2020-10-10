@@ -79,9 +79,21 @@ a.article-title:hover {
 }
 
 #footer{
-background-color: #292b2c;
+background-color: #343a40;
 }
 
 .footer-text{
   color: #f7f7f7;
+}
+
+.footer-list{
+  list-style-type: none;
+}
+
+.button-icon{
+    max-width: 50px;
+}
+
+.button-icon:hover {
+    filter: grayscale(100%);
 }

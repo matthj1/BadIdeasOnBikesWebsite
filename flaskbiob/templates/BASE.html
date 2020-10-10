@@ -64,9 +64,20 @@
             {% block content %}
 
             {% endblock content %}
-            <div class="row border-top" id="footer">
-                <div class="column offset-md-1"><p class="footer-text">1st Column footer</p></div>
-                <div class="column offset-md-4"><p class="footer-text">2nd Column footer</p></div>
+            <div class="row border-top p-4" id="footer">
+                <div class="column"><p class="footer-text m-2">© Copyright Bad Ideas on Bikes - 2020</p></div>
+                <div class="column offset-md-2">
+                    <ul class="footer-list m-2">
+                        <li class="mb-3"><a class="text-light" href="{{ url_for('homePage') }}">Articles</a></li>
+                        <li class="mb-3"><a class="text-light" href="{{ url_for('aboutPage') }}">About</a></li>
+                        <li class="mb-3"><a class="text-light" href="">Links</a></li>
+                    </ul>
+                </div>
+                <div class="column offset-md-3">
+                    <a href="" class="image-link-gs"><img src="{{ url_for('static', filename='icons/strava.png') }}" class="button-icon m-2"></a>
+                    <a href="" class="image-link-gs"><img src="{{ url_for('static', filename='icons/RWGPS.png') }}" class="button-icon m-2"></a>
+                    <a href="" class="image-link-gs"><img src="{{ url_for('static', filename='icons/small_instagram.png') }}" class="button-icon m-2"></a>
+                </div>
             </div>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
