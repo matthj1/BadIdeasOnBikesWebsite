@@ -2,7 +2,7 @@
     {% block content %}
     <div class="row py-3">
         <div class="col" id="main">
-            {% for post in posts %}
+            {% for post in posts.items %}
             <div class="card mb-3">
               <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -13,6 +13,21 @@
               </div>
             </div>
             {% endfor %}
+            <hr>
+            <div class="d-flex justify-content-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('homePage', page=1) }}">First</a></li>
+                        <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('homePage', page=posts.prev_num) }}">Previous</a></li>
+                        {% for page_num in posts.iter_pages() %}
+                            {% if page_num %}
+                                <li class="page-item {% if posts.page == page_num %}active{% endif %}"><a class="page-link" href="{{ url_for('homePage', page=page_num) }}">{{ page_num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="page-item {% if not posts.has_next %}disabled{% endif %}"><a class="page-link" href="{{ url_for('homePage', page=posts.next_num) }}">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
         <div class="col-4 order-2 px-5 border-left d-none d-lg-block pb-3" id="sticky-sidebar">
             <div class="sticky-top">

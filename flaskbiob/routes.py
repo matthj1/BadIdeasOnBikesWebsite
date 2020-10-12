@@ -11,7 +11,8 @@ from sqlalchemy import func
 @app.route("/")
 @app.route("/home")
 def homePage():
-    posts = Posts.query.all()
+    page = request.args.get("page", 1, type=int)
+    posts = Posts.query.order_by(Posts.date.desc()).paginate(page=page, per_page=5)
     return render_template("Home.html", posts=posts)
 
 
