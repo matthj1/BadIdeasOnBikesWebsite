@@ -2,10 +2,11 @@ import secrets
 import os
 from PIL import Image
 from flask import render_template, flash, redirect, url_for, request, abort
-from flaskbiob.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
+from flaskbiob.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
 from flaskbiob import app, db, bcrypt
 from flaskbiob.models import Users, Posts
 from flask_login import login_user, logout_user, current_user, login_required
+from flaskbiob.image_utils import save_picture, save_post_picture
 from sqlalchemy import func
 
 @app.route("/")
@@ -58,54 +59,6 @@ def logoutPage():
     logout_user()
     flash("Logged out successfully", "success")
     return redirect(url_for("homePage"))
-
-
-def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
-
-    image = Image.open(form_picture)
-
-    max_dimension = 125
-
-    size_x, size_y = image.size
-
-    if size_x > size_y:
-        scale = size_y / max_dimension
-    else:
-        scale = size_x / max_dimension
-
-    new_dimensions = (size_x // scale, size_y // scale)
-    image.thumbnail(new_dimensions)
-    new = image.crop(((new_dimensions[0] - max_dimension) // 2, 0,
-                      max_dimension + (new_dimensions[0] - max_dimension) // 2, max_dimension))
-    new.save(picture_path)
-    return picture_fn
-
-
-def save_post_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/post_pics', picture_fn)
-
-    image = Image.open(form_picture)
-
-    max_dimension = 1600
-
-    size_x, size_y = image.size
-
-    if size_x > size_y:
-        scale = size_x / max_dimension
-    else:
-        scale = size_y / max_dimension
-
-    new_dimensions = (size_x // scale, size_y // scale)
-    image.thumbnail(new_dimensions)
-    image.save(picture_path)
-    return picture_fn
 
 
 @app.route("/account", methods=["GET", "POST"])
@@ -184,6 +137,7 @@ def delete_post(post_id):
     db.session.commit()
     flash("Post deleted!", "success")
     return redirect(url_for("homePage"))
+
 
 @app.route("/user/<string:username>")
 def userpostPage(username):
