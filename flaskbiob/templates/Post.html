@@ -11,7 +11,7 @@
                         <hr>
                         <p>{{ post.content | safe }}</p>
                         <hr>
-                        <small class="text-muted">by {{ post.author.username }}</small>
+                        <small class="text-muted">by <a href="{{ url_for('userpostPage', username=post.author.username) }}">{{ post.author.username }}</a></small>
                     </div>
                 </div>
                     {% if current_user.is_authenticated %}
