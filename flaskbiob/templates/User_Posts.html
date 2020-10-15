@@ -9,8 +9,8 @@
               <div class="card-body">
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text">{{ post.leader }}</p>
-                  <a href="{{ url_for('postPage', post_id = post.id) }}" class="btn btn-dark">Read More</a>
-                  <p class="card-text"><small class="text-muted">by <a href="{{ url_for('userpostPage', username=post.author.username) }}">{{ post.author.username }}</a></small></p>
+                  <a href="{{ url_for('posts.postPage', post_id = post.id) }}" class="btn btn-dark">Read More</a>
+                  <p class="card-text"><small class="text-muted">by <a href="{{ url_for('users.userpostPage', username=post.author.username) }}">{{ post.author.username }}</a></small></p>
               </div>
             </div>
             {% endfor %}
@@ -18,14 +18,14 @@
             <div class="d-flex justify-content-center">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('userpostPage', username=user.username, page=1) }}">First</a></li>
-                        <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('userpostPage', username=user.username, page=posts.prev_num) }}">Previous</a></li>
+                        <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('users.userpostPage', username=user.username, page=1) }}">First</a></li>
+                        <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('users.userpostPage', username=user.username, page=posts.prev_num) }}">Previous</a></li>
                         {% for page_num in posts.iter_pages() %}
                             {% if page_num %}
-                                <li class="page-item {% if posts.page == page_num %}active{% endif %}"><a class="page-link" href="{{ url_for('userpostPage', username=user.username, page=page_num) }}">{{ page_num }}</a></li>
+                                <li class="page-item {% if posts.page == page_num %}active{% endif %}"><a class="page-link" href="{{ url_for('users.userpostPage', username=user.username, page=page_num) }}">{{ page_num }}</a></li>
                             {% endif %}
                         {% endfor %}
-                        <li class="page-item {% if not posts.has_next %}disabled{% endif %}"><a class="page-link" href="{{ url_for('userpostPage', username=user.username, page=posts.next_num) }}">Next</a></li>
+                        <li class="page-item {% if not posts.has_next %}disabled{% endif %}"><a class="page-link" href="{{ url_for('users.userpostPage', username=user.username, page=posts.next_num) }}">Next</a></li>
                     </ul>
                 </nav>
             </div>

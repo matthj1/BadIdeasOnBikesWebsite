@@ -47,11 +47,11 @@
                     {{form.submit(class="btn btn-outline-info")}}
                 </div>
                 <small class="text-muted ml-2">
-                    <a href="{{ url_for('resetrequestPage') }}">Forgot password?</a>
+                    <a href="{{ url_for('users.resetrequestPage') }}">Forgot password?</a>
                 </small>
         </form>
     </div>
     <div class="border-top pt-3">
-        Need an account? <a class="ml-2" href="{{ url_for('registerPage') }}">Sign up now!</a>
+        Need an account? <a class="ml-2" href="{{ url_for('users.registerPage') }}">Sign up now!</a>
     </div>
 {% endblock content %}

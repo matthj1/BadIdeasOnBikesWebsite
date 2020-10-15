@@ -12,39 +12,39 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-              <a class="navbar-brand" href="{{ url_for('homePage') }}">Bad Ideas On Bikes</a>
+              <a class="navbar-brand" href="{{ url_for('main.homePage') }}">Bad Ideas On Bikes</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                  <li class="nav-item {% if request.endpoint == 'homePage' %} active {% endif %}">
-                    <a class="nav-link" href="{{ url_for('homePage') }}">Articles <span class="sr-only">(current)</span></a>
+                  <li class="nav-item {% if request.endpoint == 'main.homePage' %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('main.homePage') }}">Articles <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item {% if request.endpoint == 'aboutPage' %} active {% endif %}">
-                    <a class="nav-link" href="{{ url_for('aboutPage') }}">About</a>
+                  <li class="nav-item {% if request.endpoint == 'main.aboutPage' %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('main.aboutPage') }}">About</a>
                   </li>
-                  <li class="nav-item {% if request.endpoint == 'linkPage' %} active {% endif %}">
+                  <li class="nav-item {% if request.endpoint == 'main.linkPage' %} active {% endif %}">
                     <a class="nav-link" href="#">Links</a>
                   </li>
                 </ul>
                   <ul class="navbar-nav ml-auto">
                       {% if current_user.is_authenticated %}
-                        <li class="nav-item {% if request.endpoint == 'newpostPage' %} active {% endif %}">
-                            <a class="nav-link" href="{{ url_for('newpostPage') }}">Post</a>
+                        <li class="nav-item {% if request.endpoint == 'posts.newpostPage' %} active {% endif %}">
+                            <a class="nav-link" href="{{ url_for('posts.newpostPage') }}">Post</a>
                         </li>
                           <li class="nav-item ">
-                            <a class="nav-link" href="{{ url_for('logoutPage') }}">Logout</a>
+                            <a class="nav-link" href="{{ url_for('users.logoutPage') }}">Logout</a>
                         </li>
-                        <li class="nav-item {% if request.endpoint == 'accountPage' %} active {% endif %}">
-                            <a class="nav-link" href="{{ url_for('accountPage') }}">Account</a>
+                        <li class="nav-item {% if request.endpoint == 'users.accountPage' %} active {% endif %}">
+                            <a class="nav-link" href="{{ url_for('users.accountPage') }}">Account</a>
                         </li>
                       {% else %}
-                        <li class="nav-item {% if request.endpoint == 'loginPage' %} active {% endif %}">
-                            <a class="nav-link" href="{{ url_for('loginPage') }}">Login</a>
+                        <li class="nav-item {% if request.endpoint == 'users.loginPage' %} active {% endif %}">
+                            <a class="nav-link" href="{{ url_for('users.loginPage') }}">Login</a>
                         </li>
-                        <li class="nav-item {% if request.endpoint == 'registerPage' %} active {% endif %}">
-                            <a class="nav-link" href="{{ url_for('registerPage') }}">Register</a>
+                        <li class="nav-item {% if request.endpoint == 'users.registerPage' %} active {% endif %}">
+                            <a class="nav-link" href="{{ url_for('users.registerPage') }}">Register</a>
                         </li>
                       {% endif %}
                   </ul>
@@ -68,8 +68,8 @@
                 <div class="col-4"><p class="footer-text m-2">© Copyright Bad Ideas on Bikes - 2020</p></div>
                 <div class="col-4">
                     <ul class="footer-list m-2">
-                        <li class="mb-3"><a class="text-light" href="{{ url_for('homePage') }}">Articles</a></li>
-                        <li class="mb-3"><a class="text-light" href="{{ url_for('aboutPage') }}">About</a></li>
+                        <li class="mb-3"><a class="text-light" href="{{ url_for('main.homePage') }}">Articles</a></li>
+                        <li class="mb-3"><a class="text-light" href="{{ url_for('main.aboutPage') }}">About</a></li>
                         <li class="mb-3"><a class="text-light" href="">Links</a></li>
                     </ul>
                 </div>
