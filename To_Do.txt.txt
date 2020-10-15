@@ -1,0 +1,6 @@
+Design Logo
+Pick colour scheme, do css
+Implement WYSIWYG editor - Kinda
+Update database with routes table
+Make routes page with filter and search fields
+Hide login with admin page

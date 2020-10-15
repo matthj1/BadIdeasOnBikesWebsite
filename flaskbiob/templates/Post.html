@@ -1,8 +1,5 @@
 {% extends "BASE.html" %}
     {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="column mx-auto" style="width: 1200px">
                         <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}" class="img-fluid" alt="Responsive image">
                 <div class="border">
                     <div class="column m-4">
@@ -40,7 +37,4 @@
           </div>
         </div>
     {% endif %}
-            </div>
-        </div>
-    </div>
     {% endblock content %}

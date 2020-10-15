@@ -1,5 +1,4 @@
-from flask import Blueprint
-from flask import render_template, flash, redirect, url_for, request, abort
+from flask import render_template, flash, redirect, url_for, request, abort, Blueprint, jsonify, make_response
 from flaskbiob.posts.forms import PostForm
 from flaskbiob import db
 from flaskbiob.models import Posts
@@ -67,3 +66,12 @@ def delete_post(post_id):
     return redirect(url_for("main.homePage"))
 
 
+@posts.route("/imageuploader", methods=["POST"])
+def imageuploader():
+    file = request.files.get('file')
+    if file:
+        filename = save_post_picture(file)
+        return jsonify({"location": filename})
+    output = make_response(404)
+    output.headers['Error'] = 'Image failed to upload'
+    return output

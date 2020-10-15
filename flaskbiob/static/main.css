@@ -97,3 +97,11 @@ background-color: #343a40;
 .button-icon:hover {
     filter: grayscale(100%);
 }
+
+figure{
+    text-align: center;
+}
+
+figcaption{
+    color: #5e5e5e;
+}
