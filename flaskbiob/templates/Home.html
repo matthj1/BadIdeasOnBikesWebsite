@@ -1,7 +1,7 @@
 {% extends "BASE.html" %}
     {% block content %}
-    <div class="row py-3">
-        <div class="col" id="main">
+    <div class="row">
+        <div class="col-lg-8" id="main">
             {% for post in posts.items %}
             <div class="card mb-3">
               <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}" class="card-img-top" alt="...">

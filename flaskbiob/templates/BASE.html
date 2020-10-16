@@ -11,7 +11,7 @@
 </head>
     <body>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
               <a class="navbar-brand" href="{{ url_for('main.homePage') }}">Bad Ideas On Bikes</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,6 +20,9 @@
                 <ul class="navbar-nav">
                   <li class="nav-item {% if request.endpoint == 'main.homePage' %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('main.homePage') }}">Articles <span class="sr-only">(current)</span></a>
+                  </li>
+                    <li class="nav-item {% if request.endpoint == 'main.routesPage' %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('main.routesPage') }}">Routes</a>
                   </li>
                   <li class="nav-item {% if request.endpoint == 'main.aboutPage' %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('main.aboutPage') }}">About</a>
@@ -50,7 +53,6 @@
                   </ul>
               </div>
             </nav>
-            <br>
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -64,6 +66,8 @@
             {% block content %}
 
             {% endblock content %}
+
+
             <div class="row mx-auto" id="footer">
                 <div class="col-4 my-auto"><p class="footer-text m-2 text-center">© Copyright Bad Ideas on Bikes - 2020</p></div>
                 <div class="col-4 my-auto">
