@@ -7,8 +7,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
-.bg-steel {
-  background-color: #5f788a;
+.bg-custom {
+  background-color: #14202a;
 }
 
 .site-header .navbar-nav .nav-link {
@@ -44,15 +44,11 @@ a.article-title:hover {
 }
 
 #footer{
-background-color: #343a40;
+background-color: #14202a;
 }
 
 .footer-text{
   color: #f7f7f7;
-}
-
-.footer-list{
-  list-style-type: none;
 }
 
 .button-icon{
@@ -60,7 +56,7 @@ background-color: #343a40;
 }
 
 .button-icon:hover {
-    filter: grayscale(100%);
+    filter: grayscale(80%);
 }
 
 figure{
@@ -69,4 +65,47 @@ figure{
 
 figcaption{
     color: #5e5e5e;
+}
+
+.footer-links{
+}
+
+#footer h6{
+    color: #BF4A4A;
+    font-weight: 600;
+}
+
+.bdrbottom{
+    border-width:2px !important;
+    border-color: #8c1f1f !important;
+}
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #444444;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #8c1f1f !Important;
+    border: solid 1px #8c1f1f !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #BF4A4A !Important;
+    border: solid 1px #BF4A4A;
+    border-color: #BF4A4A !Important;
 }
