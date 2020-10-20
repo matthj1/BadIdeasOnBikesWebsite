@@ -109,3 +109,17 @@ figcaption{
     border: solid 1px #BF4A4A;
     border-color: #BF4A4A !Important;
 }
+
+.banner-top{
+    background-color: #14202a;
+}
+
+.banner-top img{
+    max-width: 12%;
+    min-width: 10%;
+    height: auto;
+}
+
+.sticky-offset{
+    top: 70px;
+}

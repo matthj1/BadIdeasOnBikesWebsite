@@ -10,7 +10,8 @@
     <title>Bad Ideas on Bikes</title>
 </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-custom mb-4">
+    <div class="banner-top"><img src="{{ url_for('static', filename='BIOB_Dark_Square_SM.jpg') }}" class="mx-auto d-block img-fluid"></div>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-custom mb-4">
         <div class="container">
               <a class="navbar-brand" href="{{ url_for('main.homePage') }}">Bad Ideas On Bikes</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
