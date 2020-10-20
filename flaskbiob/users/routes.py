@@ -12,22 +12,6 @@ from flaskbiob.main.utils import send_reset_email
 users = Blueprint("users", __name__)
 
 
-@users.route("/register", methods=["GET", "POST"])
-def registerPage():
-    if current_user.is_authenticated:
-        return redirect(url_for("main.homePage"))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
-        user = Users(username=form.username.data, email=form.email.data.lower(), password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash("Account created!", "success")
-        return redirect(url_for("users.loginPage"))
-    else:
-        return render_template("Register.html", title="Register", form=form)
-
-
 @users.route("/login", methods=["GET", "POST"])
 def loginPage():
     if current_user.is_authenticated:
