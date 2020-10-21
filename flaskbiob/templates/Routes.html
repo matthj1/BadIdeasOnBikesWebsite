@@ -1,9 +1,19 @@
 {% extends "BASE.html" %}
 {% block content %}
-    <div class="border mb-4">
-                    <div class="column p-4">
-                        <h1>All Routes</h1>
-                        <p>Here's a page where you can explore all routes</p>
-                    </div>
-                </div>
+    <div class="row border mb-4">
+        <div class="col-md-12">
+            <h1>All Routes</h1>
+            <p>Here's a page where you can explore all routes</p>
+        </div>
+    </div>
+    <div class="col-md-12">
+        {% for route in my_routes %}
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">{{ route.title }}</h5>
+                  <p class="card-text"><small class="text-muted">by <a href="{{ url_for('users.userpostPage', username=route.author.username) }}">{{ route.author.username }}</a></small></p>
+              </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class RouteForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
     region = SelectField("Region", choices=["South East", "London", "North West", "East of England", "West Midlands",
                                             "South West", "Yorkshire and Humber", "East Midlands", "North East"])
     starting_location = StringField("Starting Location", validators=[DataRequired()])

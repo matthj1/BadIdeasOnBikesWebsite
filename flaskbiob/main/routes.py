@@ -16,7 +16,3 @@ def homePage():
 @main.route("/about")
 def aboutPage():
     return render_template("About.html")
-
-@main.route("/routes")
-def routesPage():
-    return render_template("Routes.html")

@@ -23,7 +23,7 @@
                     <a class="nav-link" href="{{ url_for('main.homePage') }}">Articles <span class="sr-only">(current)</span></a>
                   </li>
                     <li class="nav-item {% if request.endpoint == 'main.routesPage' %} active {% endif %}">
-                    <a class="nav-link" href="{{ url_for('main.routesPage') }}">Routes</a>
+                    <a class="nav-link" href="{{ url_for('routes.routesPage') }}">Routes</a>
                   </li>
                   <li class="nav-item {% if request.endpoint == 'main.aboutPage' %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('main.aboutPage') }}">About</a>
