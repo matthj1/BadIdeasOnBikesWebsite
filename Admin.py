@@ -1,6 +1,7 @@
 from flaskbiob import db, bcrypt, create_app
 from flaskbiob.models import Users
 from email_validator import validate_email, EmailNotValidError
+import os
 
 if __name__=="__main__":
     app = create_app()
@@ -8,8 +9,15 @@ if __name__=="__main__":
     validuser = False
     validpassword = False
     validemail = False
+    validatepin = False
 
     with app.app_context():
+        while not validatepin:
+            pin = input("Please enter security pin: ")
+            if pin == os.environ["ADMIN_PIN"]:
+                validatepin = True
+            else:
+                print("Security pin incorrect. Please try again.")
         while not validuser:
             username = input("Please enter username: ")
             if Users.query.filter_by(username=username).first():
