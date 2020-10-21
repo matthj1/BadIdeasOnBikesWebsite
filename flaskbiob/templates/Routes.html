@@ -1,19 +1,35 @@
 {% extends "BASE.html" %}
 {% block content %}
-    <div class="row border mb-4">
+    <div class="row">
         <div class="col-md-12">
-            <h1>All Routes</h1>
-            <p>Here's a page where you can explore all routes</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">Length</th>
+                        <th scope="col">Ascent</th>
+                        <th scope="col">Scenery</th>
+                        <th scope="col">Brutality</th>
+                        <th scope="col">Quietness</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for route in my_routes %}
+                    <tr>
+                        <th scope="row"><a href="{{ url_for('posts.postPage', post_id=route.post) }}">{{ route.title }}</a></th>
+                        <td>{{ route.region }}</td>
+                        <td>{{ route.starting_location }}</td>
+                        <td>{{ route.length }} km</td>
+                        <td>{{ route.ascent }} m</td>
+                        <td>{{ route.scenery }}</td>
+                        <td>{{ route.brutality }}</td>
+                        <td>{{ route.quietness }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div class="col-md-12">
-        {% for route in my_routes %}
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">{{ route.title }}</h5>
-                  <p class="card-text"><small class="text-muted">by <a href="{{ url_for('users.userpostPage', username=route.author.username) }}">{{ route.author.username }}</a></small></p>
-              </div>
-            </div>
-        {% endfor %}
     </div>
 {% endblock content %}
