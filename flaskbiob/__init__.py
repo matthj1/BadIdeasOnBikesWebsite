@@ -26,8 +26,10 @@ def create_app(config_class=Config):
     from flaskbiob.users.routes import users
     from flaskbiob.posts.routes import posts
     from flaskbiob.main.routes import main
+    from flaskbiob.routes.routes import routes
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(routes)
 
     return app

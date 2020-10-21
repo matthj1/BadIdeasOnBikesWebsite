@@ -16,6 +16,7 @@ class Users(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default="default.png")
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship("Posts", backref="author", lazy=True)
+    routes = db.relationship("Routes", backref="author", lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config["SECRET_KEY"], expires_sec)
@@ -36,12 +37,30 @@ class Users(db.Model, UserMixin):
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    post_type = db.Column(db.String(7), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     leader = db.Column(db.Text, nullable=False)
     content = db.Column(db.Text, nullable=False)
     post_image = db.Column(db.String(100), nullable=False, default="default_post.jpg")
     user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    routes = db.relationship("Routes", backref="route", lazy=True)
 
     def __repr__(self):
         return f"Post({self.title},{self.date})"
+
+
+class Routes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(100), nullable=False)
+    starting_location = db.Column(db.String(100), nullable=False)
+    starting_coordinates = db.Column(db.String(100), nullable=False)
+    length = db.Column(db.Integer, nullable=False)
+    ascent = db.Column(db.Integer, nullable=False)
+    scenery = db.Column(db.Integer, nullable=False)
+    brutality = db.Column(db.Integer, nullable=False)
+    quietness = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    link = db.Column(db.String(100), nullable=False)
+    post = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=True)
+    user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)

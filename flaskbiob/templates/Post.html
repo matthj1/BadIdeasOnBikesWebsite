@@ -13,6 +13,7 @@
                 </div>
     {% if current_user.is_authenticated %}
         <a href="{{ url_for('posts.updatepostPage', post_id=post.id) }}" class="btn btn-dark" role="button">Edit</a>
+        <a href="{{ url_for('routes.newroutePage', post_id=post.id) }}" class="btn btn-dark" role="button">New Route for Post</a>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
         <!-- Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

@@ -13,7 +13,7 @@ posts = Blueprint("posts", __name__)
 def newpostPage():
     form = PostForm()
     if form.validate_on_submit():
-        post = Posts(title=form.title.data, leader=form.leader.data, content=form.content.data, author=current_user)
+        post = Posts(post_type=form.post_type.data, title=form.title.data, leader=form.leader.data, content=form.content.data, author=current_user)
         if form.post_image.data:
             picture_file = save_post_picture(form.post_image.data)
             post.post_image = picture_file
