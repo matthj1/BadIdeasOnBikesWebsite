@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, abort, Blueprint, jsonify, make_response
 from flaskbiob.posts.forms import PostForm
 from flaskbiob import db
-from flaskbiob.models import Posts
+from flaskbiob.models import Posts, Routes
 from flask_login import current_user, login_required
 from flaskbiob.image_utils import save_post_picture
 
@@ -27,7 +27,16 @@ def newpostPage():
 @posts.route("/post/<post_id>", methods=["GET", "POST"])
 def postPage(post_id):
     post = Posts.query.get_or_404(post_id)
-    return render_template("Post.html", title=post.title, post=post)
+    if post.post_type == "Route":
+        route = None
+        try:
+            route = Routes.query.filter_by(post=post_id).first()
+        except:
+            print("No route found")
+        return render_template("Post_Route.html", title=post.title, post=post, route=route)
+    else:
+        review = None
+        return render_template("Post_Review.html", title=post.title, post=post, review=review)
 
 
 @posts.route("/post/<post_id>/update", methods=["GET", "POST"])
@@ -60,8 +69,16 @@ def delete_post(post_id):
     post = Posts.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
-    db.session.delete(post)
-    db.session.commit()
+    if post.post_type == "Route":
+        try:
+            route = Routes.query.filter_by(post=post_id).first()
+        except:
+            route = None
+            print("No route")
+        if route:
+            db.session.delete(route)
+        db.session.delete(post)
+        db.session.commit()
     flash("Post deleted!", "success")
     return redirect(url_for("main.homePage"))
 
