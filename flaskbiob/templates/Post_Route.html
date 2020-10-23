@@ -23,8 +23,8 @@
                                     <tr>
                                         <th scope="row">{{ route.region }}</th>
                                         <td>{{ route.starting_location }}</td>
-                                        <td>{{ route.length }}</td>
-                                        <td>{{ route.ascent }}</td>
+                                        <td>{{ route.length }} km</td>
+                                        <td>{{ route.ascent }} m</td>
                                         <td>{{ route.scenery }}</td>
                                         <td>{{ route.brutality }}</td>
                                         <td>{{ route.quietness }}</td>
@@ -36,6 +36,10 @@
                         <p>{{ post.content | safe }}</p>
                         <hr>
                         <small class="text-muted">by <a href="{{ url_for('users.userpostPage', username=post.author.username) }}">{{ post.author.username }}</a></small>
+                        <hr>
+                        {% if route %}
+                            <iframe src="https://ridewithgps.com/embeds?type=route&id={{route.link}}&title={{ encoded_title }}&metricUnits=true&sampleGraph=true" style="width: 1px; min-width: 100%; height: 700px; border: none;" scrolling="no"></iframe>
+                        {% endif %}
                     </div>
                         {% if current_user.is_authenticated %}
                             <a href="{{ url_for('posts.updatepostPage', post_id=post.id) }}" class="btn btn-dark" role="button">Edit</a>

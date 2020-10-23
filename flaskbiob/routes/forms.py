@@ -12,7 +12,7 @@ class RouteForm(FlaskForm):
     length = IntegerField("Ride length in km", validators=[DataRequired()])
     ascent = IntegerField("Ride height gain in meters", validators=[DataRequired()])
     description = TextAreaField("Short description of ride", validators=[DataRequired()])
-    link = StringField("Link to RWGPS", validators=[DataRequired()])
+    link = StringField("RWGPS ID", validators=[DataRequired()])
     scenery = SelectField("Rate the scenery out of 5", choices=[1, 2, 3, 4, 5])
     brutality = SelectField("Rate the brutality out of 5", choices=[1, 2, 3, 4, 5])
     quietness = SelectField("Rate how quiet the route is out of 5", choices=[1, 2, 3, 4, 5])

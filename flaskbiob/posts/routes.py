@@ -4,6 +4,7 @@ from flaskbiob import db
 from flaskbiob.models import Posts, Routes
 from flask_login import current_user, login_required
 from flaskbiob.image_utils import save_post_picture
+import urllib.parse
 
 posts = Blueprint("posts", __name__)
 
@@ -29,11 +30,14 @@ def postPage(post_id):
     post = Posts.query.get_or_404(post_id)
     if post.post_type == "Route":
         route = None
+        encoded_title = None
         try:
             route = Routes.query.filter_by(post=post_id).first()
+            encoded_title = urllib.parse.quote(route.title)
         except:
             print("No route found")
-        return render_template("Post_Route.html", title=post.title, post=post, route=route)
+        return render_template("Post_Route.html", title=post.title, post=post, route=route,
+                               encoded_title=encoded_title)
     else:
         review = None
         return render_template("Post_Review.html", title=post.title, post=post, review=review)
