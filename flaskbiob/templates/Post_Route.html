@@ -43,10 +43,12 @@
                     </div>
                         {% if current_user.is_authenticated %}
                             <a href="{{ url_for('posts.updatepostPage', post_id=post.id) }}" class="btn btn-dark" role="button">Edit</a>
-                            {% if not route %}
-                            <a href="{{ url_for('routes.newroutePage', post_id=post.id) }}" class="btn btn-dark" role="button">New Route for Post</a>
+                            {% if route %}
+                            <a href="{{ url_for('routes.updateroutePage', route_id=route.id) }}" class="btn btn-dark ml-3" role="button">Edit Route</a>
+                            {% else %}
+                            <a href="{{ url_for('routes.newroutePage', post_id=post.id) }}" class="btn btn-dark ml-3" role="button">New Route for Post</a>
                             {% endif %}
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                            <button type="button" class="btn btn-danger ml-3" data-toggle="modal" data-target="#deleteModal">Delete</button>
                             <!-- Modal -->
                             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">

@@ -24,6 +24,43 @@ def newroutePage(post_id):
     return render_template("Create_Route.html", title="New Route", form=form)
 
 
+@routes.route("/routes/<route_id>/update", methods=["GET", "POST"])
+@login_required
+def updateroutePage(route_id):
+    route = Routes.query.get_or_404(route_id)
+    if route.author != current_user:
+        abort(403)
+    form = RouteForm()
+    if form.validate_on_submit():
+        route.title = form.title.data
+        route.region = form.region.data
+        route.starting_location = form.starting_location.data
+        route.starting_coordinates = form.starting_coordinates.data
+        route.length = form.length.data
+        route.ascent = form.ascent.data
+        route.description = form.description.data
+        route.link = form.link.data
+        route.scenery = form.scenery.data
+        route.brutality = form.brutality.data
+        route.quietness = form.quietness.data
+        db.session.commit()
+        flash("Post updated!", "success")
+        return redirect(url_for("posts.postPage", post_id=route.post))
+    elif request.method == "GET":
+        form.title.data = route.title
+        form.region.data = route.region
+        form.starting_location.data = route.starting_location
+        form.starting_coordinates.data = route.starting_coordinates
+        form.length.data = route.length
+        form.ascent.data = route.ascent
+        form.description.data = route.description
+        form.link.data = route.link
+        form.scenery.data = route.scenery
+        form.brutality.data = route.brutality
+        form.quietness.data = route.quietness
+    return render_template("Edit_Route.html", title="Edit Route", form=form)
+
+
 @routes.route("/routes")
 def routesPage():
     my_routes = Routes.query.all()
