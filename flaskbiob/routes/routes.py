@@ -67,3 +67,12 @@ def routesPage():
     for route in my_routes:
         print(route.title)
     return render_template("Routes.html", my_routes=my_routes)
+
+
+@routes.route("/routesfiltered")
+def routesfilterPage():
+    query = request.args
+    for a, b in query.items():
+        print(a,b)
+    my_routes = Routes.query.all()
+    return render_template("Routes.html", my_routes=my_routes)
