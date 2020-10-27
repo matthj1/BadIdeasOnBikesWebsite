@@ -2,6 +2,197 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
+            <form method="POST" action="" enctype="multipart/form-data">
+            {{form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Sort and Filter
+                </legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{ form.region.label(class="form-control-label") }}
+
+                            {% if form.region.errors %}
+                                {{ form.region(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.region.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.region(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{ form.length_min.label(class="form-control-label") }}
+
+                            {% if form.length_min.errors %}
+                                {{ form.length_min(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.length_min.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.length_min(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.length_max.label(class="form-control-label") }}
+
+                            {% if form.length_max.errors %}
+                                {{ form.length_max(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.length_max.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.length_max(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.ascent_min.label(class="form-control-label") }}
+
+                            {% if form.ascent_min.errors %}
+                                {{ form.ascent_min(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.ascent_min.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.ascent_min(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.ascent_max.label(class="form-control-label") }}
+
+                            {% if form.ascent_max.errors %}
+                                {{ form.ascent_max(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.ascent_max.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.ascent_max(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{ form.scenery_min.label(class="form-control-label") }}
+
+                            {% if form.scenery_min.errors %}
+                                {{ form.scenery_min(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.scenery_min.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.scenery_min(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.scenery_max.label(class="form-control-label") }}
+
+                            {% if form.scenery_max.errors %}
+                                {{ form.scenery_max(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.scenery_max.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.scenery_max(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.brutality_min.label(class="form-control-label") }}
+
+                            {% if form.brutality_min.errors %}
+                                {{ form.brutality_min(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.brutality_min.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.brutality_min(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.brutality_max.label(class="form-control-label") }}
+
+                            {% if form.brutality_max.errors %}
+                                {{ form.brutality_max(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.brutality_max.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.brutality_max(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.quietness_min.label(class="form-control-label") }}
+
+                            {% if form.quietness_min.errors %}
+                                {{ form.quietness_min(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.quietness_min.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.quietness_min(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.quietness_max.label(class="form-control-label") }}
+
+                            {% if form.quietness_max.errors %}
+                                {{ form.quietness_max(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.quietness_max.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.quietness_max(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{ form.sort_by.label(class="form-control-label") }}
+
+                            {% if form.sort_by.errors %}
+                                {{ form.sort_by(class="form-control form-control-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.sort_by.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.sort_by(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                    </fieldset>
+                        <div class="form-group">
+                            {{form.submit(class="btn btn-outline-info")}}
+                        </div>
+                </form>
+                </div>
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>

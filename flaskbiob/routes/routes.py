@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for, request, abort, Blueprint, jsonify, make_response
-from flaskbiob.routes.forms import RouteForm
+from flaskbiob.routes.forms import RouteForm, RouteFilterForm
 from flaskbiob import db
 from flaskbiob.models import Routes
 from flask_login import current_user, login_required
@@ -61,18 +61,14 @@ def updateroutePage(route_id):
     return render_template("Edit_Route.html", title="Edit Route", form=form)
 
 
-@routes.route("/routes")
+@routes.route("/routes", methods=["GET", "POST"])
 def routesPage():
+    form = RouteFilterForm()
+    query_types = ("region", "length_min", "length_max", "ascent_min", "ascent_max", "scenery_min", "scenery_max",
+                   "brutality_min", "brutality_max", "quietness_min", "quietness_max")
+    queries = {}
+    if form.validate_on_submit():
+        if form.region.data:
+            print(form.region.data)
     my_routes = Routes.query.all()
-    for route in my_routes:
-        print(route.title)
-    return render_template("Routes.html", my_routes=my_routes)
-
-
-@routes.route("/routesfiltered")
-def routesfilterPage():
-    query = request.args
-    for a, b in query.items():
-        print(a,b)
-    my_routes = Routes.query.all()
-    return render_template("Routes.html", my_routes=my_routes)
+    return render_template("Routes.html", my_routes=my_routes, form=form)
