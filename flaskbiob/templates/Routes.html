@@ -2,6 +2,10 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
+            <button class="btn btn-primary btn-sm m-2" type="button" data-toggle="collapse" data-target="#collapsefilters" aria-expanded="false" aria-controls="collapsefilters">
+                Filter
+            </button>
+            <div id="collapsefilters" class="panel-collapse collapse">
             <form method="POST" action="" enctype="multipart/form-data">
             {{form.hidden_tag() }}
             <fieldset class="form-group">
@@ -192,6 +196,7 @@
                         </div>
                 </form>
                 </div>
+        </div>
         <div class="col-md-12">
             <table class="table">
                 <thead>
