@@ -31,12 +31,12 @@ class RouteFilterForm(FlaskForm):
     length_max = IntegerField("Maximum ride length", validators=[validators.Optional()])
     ascent_min = IntegerField("Minimum ride ascent", validators=[validators.Optional()])
     ascent_max = IntegerField("Maximum ride ascent", validators=[validators.Optional()])
-    scenery_min = SelectField("Minimum scenery rating", choices=[1, 2, 3, 4, 5], validators=[validators.Optional()])
-    scenery_max = SelectField("Maximum scenery rating", choices=[1, 2, 3, 4, 5], validators=[validators.Optional()])
-    brutality_min = SelectField("Minimum brutality rating", choices=[1, 2, 3, 4, 5], validators=[validators.Optional()])
-    brutality_max = SelectField("Maximum brutality rating", choices=[1, 2, 3, 4, 5], validators=[validators.Optional()])
-    quietness_min = SelectField("Minimum quietness rating", choices=[1, 2, 3, 4, 5], validators=[validators.Optional()])
-    quietness_max = SelectField("Maximum quietness rating", choices=[1, 2, 3, 4, 5], validators=[validators.Optional()])
+    scenery_min = SelectField("Minimum scenery rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
+    scenery_max = SelectField("Maximum scenery rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
+    brutality_min = SelectField("Minimum brutality rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
+    brutality_max = SelectField("Maximum brutality rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
+    quietness_min = SelectField("Minimum quietness rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
+    quietness_max = SelectField("Maximum quietness rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
     #sort by
     sort_by = SelectMultipleField("Sort by:", choices=[("Length ascending", "Length ascending"),
                                                        ("Length descending", "Length descending"),

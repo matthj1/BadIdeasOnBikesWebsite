@@ -64,11 +64,32 @@ def updateroutePage(route_id):
 @routes.route("/routes", methods=["GET", "POST"])
 def routesPage():
     form = RouteFilterForm()
-    query_types = ("region", "length_min", "length_max", "ascent_min", "ascent_max", "scenery_min", "scenery_max",
-                   "brutality_min", "brutality_max", "quietness_min", "quietness_max")
-    queries = {}
+    query = Routes.query
     if form.validate_on_submit():
         if form.region.data:
-            print(form.region.data)
+            query = query.filter(Routes.region == form.region.data[0])
+        if form.length_min.data:
+            query = query.filter(Routes.length >= form.length_min.data)
+        if form.length_max.data:
+            query = query.filter(Routes.length <= form.length_max.data)
+        if form.ascent_min.data:
+            query = query.filter(Routes.ascent >= form.ascent_min.data)
+        if form.ascent_max.data:
+            query = query.filter(Routes.ascent <= form.ascent_max.data)
+        if form.scenery_min.data and form.scenery_min.data != "None":
+            query = query.filter(Routes.scenery >= form.scenery_min.data)
+        if form.scenery_max.data and form.scenery_max.data != "None":
+            query = query.filter(Routes.scenery <= form.scenery_max.data)
+        if form.brutality_min.data and form.brutality_min.data != "None":
+            query = query.filter(Routes.brutality >= form.brutality_min.data)
+        if form.brutality_max.data and form.brutality_max.data != "None":
+            query = query.filter(Routes.brutality <= form.brutality_max.data)
+        if form.quietness_min.data and form.quietness_min.data != "None":
+            query = query.filter(Routes.quietness >= form.quietness_min.data)
+        if form.quietness_max.data and form.quietness_max.data != "None":
+            query = query.filter(Routes.quietness <= form.quietness_max.data)
+        results = query.all()
+        print(results)
+        return render_template("Routes.html", my_routes=results, form=form, filtered=True)
     my_routes = Routes.query.all()
-    return render_template("Routes.html", my_routes=my_routes, form=form)
+    return render_template("Routes.html", my_routes=my_routes, form=form, filtered=False)

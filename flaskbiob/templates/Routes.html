@@ -5,6 +5,9 @@
             <button class="btn btn-primary btn-sm m-2" type="button" data-toggle="collapse" data-target="#collapsefilters" aria-expanded="false" aria-controls="collapsefilters">
                 Filter
             </button>
+            {% if filtered %}
+                <a href="{{ url_for('routes.routesPage') }}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Clear Search</a>
+            {% endif %}
             <div id="collapsefilters" class="panel-collapse collapse">
             <form method="POST" action="" enctype="multipart/form-data">
             {{form.hidden_tag() }}
