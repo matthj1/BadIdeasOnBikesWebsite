@@ -88,6 +88,26 @@ def routesPage():
             query = query.filter(Routes.quietness >= form.quietness_min.data)
         if form.quietness_max.data and form.quietness_max.data != "None":
             query = query.filter(Routes.quietness <= form.quietness_max.data)
+        if form.sort_by.data[0] == "Length ascending":
+            query = query.order_by(Routes.length.asc())
+        elif form.sort_by.data[0] == "Length descending":
+            query = query.order_by(Routes.length.desc())
+        elif form.sort_by.data[0] == "Ascent ascending":
+            query = query.order_by(Routes.ascent.asc())
+        elif form.sort_by.data[0] == "Ascent descending":
+            query = query.order_by(Routes.ascent.desc())
+        elif form.sort_by.data[0] == "Scenery ascending":
+            query = query.order_by(Routes.scenery.asc())
+        elif form.sort_by.data[0] == "Scenery descending":
+            query = query.order_by(Routes.scenery.desc())
+        elif form.sort_by.data[0] == "Brutality ascending":
+            query = query.order_by(Routes.brutality.asc())
+        elif form.sort_by.data[0] == "Brutality descending":
+            query = query.order_by(Routes.brutality.desc())
+        elif form.sort_by.data[0] == "Quietness ascending":
+            query = query.order_by(Routes.quietness.asc())
+        elif form.sort_by.data[0] == "Quietness descending":
+            query = query.order_by(Routes.quietness.desc())
         results = query.all()
         print(results)
         return render_template("Routes.html", my_routes=results, form=form, filtered=True)
