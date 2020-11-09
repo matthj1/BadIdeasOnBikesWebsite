@@ -7,7 +7,5 @@ Hide login with admin page - Done
 Improve Footer - Done
 
 Make a reviews page and update db with reviews stuff
-
-Make a delete photo tool for when a post is deleted
-
-
+Make a delete photo tool for when a post is deleted - Done
+Make and implement some "stars" for ratings

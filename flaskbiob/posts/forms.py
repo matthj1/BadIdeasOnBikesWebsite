@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 
 
 class PostForm(FlaskForm):
-    post_type = SelectField("Post_Type", choices=["Route", "Review"])
+    post_type = SelectField("Post_Type", choices=["Route", "Review", "Other"])
     title = StringField("Title", validators=[DataRequired()])
     leader = TextAreaField("Leader", validators=[DataRequired()])
     content = TextAreaField("Content", validators=[])
