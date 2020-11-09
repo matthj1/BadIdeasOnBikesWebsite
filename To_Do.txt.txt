@@ -1,7 +1,13 @@
-Design Logo
-Pick colour scheme, do css
-Implement WYSIWYG editor - Kinda
-Update database with routes table
-Make routes page with filter and search fields - Started
-Hide login with admin page
-Improve Footer
+Design Logo - Done
+Pick colour scheme, do css - Change more colors for generic bootstrap pieces
+Implement WYSIWYG editor - Need to improve inline picture editing...
+Update database with routes table - Done
+Make routes page with filter and search fields - Done
+Hide login with admin page - Done
+Improve Footer - Done
+
+Make a reviews page and update db with reviews stuff
+
+Make a delete photo tool for when a post is deleted
+
+
