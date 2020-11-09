@@ -3,7 +3,7 @@ from flaskbiob.posts.forms import PostForm
 from flaskbiob import db
 from flaskbiob.models import Posts, Routes
 from flask_login import current_user, login_required
-from flaskbiob.image_utils import save_post_picture
+from flaskbiob.image_utils import save_post_picture, delete_picture
 import urllib.parse
 
 posts = Blueprint("posts", __name__)
@@ -76,13 +76,13 @@ def delete_post(post_id):
     if post.post_type == "Route":
         try:
             route = Routes.query.filter_by(post=post_id).first()
-        except:
-            route = None
-            print("No route")
-        if route:
             db.session.delete(route)
-        db.session.delete(post)
-        db.session.commit()
+        except:
+            print("No route")
+    if post.post_image:
+        delete_picture(post.post_image)
+    db.session.delete(post)
+    db.session.commit()
     flash("Post deleted!", "success")
     return redirect(url_for("main.homePage"))
 

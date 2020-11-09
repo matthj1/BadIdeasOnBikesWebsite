@@ -50,3 +50,11 @@ def save_post_picture(form_picture):
     image.thumbnail(new_dimensions)
     image.save(picture_path)
     return picture_fn
+
+
+def delete_picture(picture_fn):
+    picture = os.path.join(current_app.root_path, 'static/post_pics', picture_fn)
+    if os.path.exists(picture):
+        os.remove(picture)
+    else:
+        print("File not found")
