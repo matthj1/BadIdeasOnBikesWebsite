@@ -13,8 +13,8 @@
                                         <th scope="col">Category</th>
                                         <th scope="col">Manufacturer</th>
                                         <th scope="col">Product Name</th>
-                                        <th scope="col">Rating</th>
                                         <th scope="col">RRP</th>
+                                        <th scope="col">Rating</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,6 +37,7 @@
                         {% if current_user.is_authenticated %}
                             <a href="{{ url_for('posts.updatepostPage', post_id=post.id) }}" class="btn btn-dark" role="button">Edit</a>
                             {% if review %}
+                            <a href="{{ url_for('reviews.updatereviewPage', review_id=review.id) }}" class="btn btn-dark ml-3" role="button">Edit Review</a>
                             {% else %}
                             <a href="{{ url_for('reviews.newreviewPage', post_id=post.id) }}" class="btn btn-dark ml-3" role="button">New Review for Post</a>
                             {% endif %}

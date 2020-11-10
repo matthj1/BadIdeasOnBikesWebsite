@@ -20,3 +20,30 @@ def newreviewPage(post_id):
         flash("Review created!", "success")
         return redirect(url_for("main.homePage"))
     return render_template("Create_Review.html", title="New Route", form=form)
+
+
+@reviews.route("/reviews/<review_id>/update", methods=["GET", "POST"])
+@login_required
+def updatereviewPage(review_id):
+    review = Reviews.query.get_or_404(review_id)
+    if review.author != current_user:
+        abort(403)
+    form = ReviewForm()
+    if form.validate_on_submit():
+        review.title = form.title.data
+        review.category = form.category.data
+        review.manufacturer = form.manufacturer.data
+        review.product_name = form.product_name.data
+        review.rrp = form.RRP.data
+        review.rating = form.rating.data
+        db.session.commit()
+        flash("Post updated!", "success")
+        return redirect(url_for("posts.postPage", post_id=review.post))
+    elif request.method == "GET":
+        form.title.data = review.title
+        form.category.data = review.category
+        form.manufacturer.data = review.manufacturer
+        form.product_name.data = review.product_name
+        form.RRP.data = review.rrp
+        form.rating.data = review.rating
+    return render_template("Edit_Review.html", title="Edit Review", form=form)
