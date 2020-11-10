@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, abort, Blueprint, jsonify, make_response
 from flaskbiob.posts.forms import PostForm
 from flaskbiob import db
-from flaskbiob.models import Posts, Routes
+from flaskbiob.models import Posts, Routes, Reviews
 from flask_login import current_user, login_required
 from flaskbiob.image_utils import save_post_picture, delete_picture
 import urllib.parse
@@ -40,6 +40,10 @@ def postPage(post_id):
                                encoded_title=encoded_title)
     else:
         review = None
+        try:
+            review = Reviews.query.filter_by(post=post_id).first()
+        except:
+            print("No review found")
         return render_template("Post_Review.html", title=post.title, post=post, review=review)
 
 

@@ -7,12 +7,14 @@ from flask_login import current_user, login_required
 reviews = Blueprint("reviews", __name__)
 
 
-@reviews.route("/route/<post_id>", methods=["GET", "POST"])
+@reviews.route("/reviews/<post_id>", methods=["GET", "POST"])
 @login_required
-def newroutePage(post_id):
+def newreviewPage(post_id):
     form = ReviewForm()
     if form.validate_on_submit():
-        review = Reviews(title=form.title.data, category=form.category.data, rating=form.rating.data, post=post_id)
+        review = Reviews(title=form.title.data, category=form.category.data, manufacturer=form.manufacturer.data,
+                         product_name=form.product_name.data, rrp=form.RRP.data, rating=form.rating.data, post=post_id,
+                         author=current_user)
         db.session.add(review)
         db.session.commit()
         flash("Review created!", "success")
