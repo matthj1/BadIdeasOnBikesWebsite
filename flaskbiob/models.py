@@ -74,5 +74,6 @@ class Reviews(db.Model):
     title = db.Column(db.String(100), nullable=False)
     category = db.Column(db.String(100), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
+    rrp = db.Column(db.Float, nullable=True)
     post = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=True)
     user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)

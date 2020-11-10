@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, FloatField
 from wtforms.validators import DataRequired
 
 
@@ -35,4 +35,5 @@ class ReviewForm(FlaskForm):
                                                 "Other - Other"
                                                 ])
     Rating = SelectField("Rating", choices=[1, 2, 3, 4, 5])
+    RRP = FloatField("RRP", validators=[DataRequired()])
     submit = SubmitField("Post")
