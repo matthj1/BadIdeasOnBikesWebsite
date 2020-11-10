@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, abort, Blueprint, jsonify, make_response
 from flaskbiob.reviews.forms import ReviewForm
 from flaskbiob import db
-from flaskbiob.models import Reviews
+from flaskbiob.models import Reviews, Posts
 from flask_login import current_user, login_required
 
 reviews = Blueprint("reviews", __name__)
@@ -47,3 +47,9 @@ def updatereviewPage(review_id):
         form.RRP.data = review.rrp
         form.rating.data = review.rating
     return render_template("Edit_Review.html", title="Edit Review", form=form)
+
+
+@reviews.route("/reviews")
+def reviewPage():
+    reviews = db.session.query(Posts).all()
+    return render_template("Reviews.html", reviews=reviews)

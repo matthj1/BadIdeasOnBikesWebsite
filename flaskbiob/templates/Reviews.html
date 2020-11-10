@@ -1,0 +1,34 @@
+{% extends "BASE.html" %}
+    {% block content %}
+    <div class="row">
+        {% for review in reviews %}
+        {% if loop.index % 2 != 0 %}
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.reviews.title }}</h5>
+                    <p class="card-text">{{ review.leader }}</p>
+                </div>
+                <div class="card-body">
+                    <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.reviews.title }}</h5>
+                    <p class="card-text">{{ review.leader }}</p>
+                </div>
+                <div class="card-body">
+                    <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endblock %}

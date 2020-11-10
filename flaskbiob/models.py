@@ -45,8 +45,8 @@ class Posts(db.Model):
     content = db.Column(db.Text, nullable=False)
     post_image = db.Column(db.String(100), nullable=False, default="default_post.jpg")
     user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    routes = db.relationship("Routes", backref="post_route", lazy=True)
-    reviews = db.relationship("Reviews", backref="post_review", lazy=True)
+    routes = db.relationship("Routes", backref="post_route", lazy="joined", uselist=False)
+    reviews = db.relationship("Reviews", backref="post_review", lazy="joined", uselist=False)
 
     def __repr__(self):
         return f"Post({self.title},{self.date})"
@@ -68,6 +68,9 @@ class Routes(db.Model):
     post = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=True)
     user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
+    def __repr__(self):
+        return f"Route({self.title},{self.length}km)"
+
 
 class Reviews(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -79,3 +82,6 @@ class Reviews(db.Model):
     rrp = db.Column(db.Float, nullable=False)
     post = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=True)
     user = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+
+    def __repr__(self):
+        return f"Review({self.title},£{self.rrp})"

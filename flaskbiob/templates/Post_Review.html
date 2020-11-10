@@ -22,7 +22,7 @@
                                         <th scope="row">{{ review.category }}</th>
                                         <td>{{ review.manufacturer }}</td>
                                         <td>{{ review.product_name }}</td>
-                                        <td>£{{ review.rrp }}</td>
+                                        <td>£{{ "{:.2f}".format(review.rrp) }}</td>
                                         <td>{{ review.rating }}</td>
                                     </tr>
                                 </tbody>
