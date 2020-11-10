@@ -82,7 +82,13 @@ def delete_post(post_id):
             route = Routes.query.filter_by(post=post_id).first()
             db.session.delete(route)
         except:
-            print("No route")
+            print("No route to delete")
+    if post.post_type == "Review":
+        try:
+            review = Reviews.query.filter_by(post=post_id).first()
+            db.session.delete(review)
+        except:
+            print("No review to delete")
     if post.post_image:
         delete_picture(post.post_image)
     db.session.delete(post)
