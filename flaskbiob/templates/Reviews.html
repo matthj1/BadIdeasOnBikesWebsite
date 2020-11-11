@@ -1,9 +1,80 @@
 {% extends "BASE.html" %}
     {% block content %}
     <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#bikesDropdown" aria-expanded="false" aria-controls="collapseExample">
+                Bikes
+            </button>
+            <div class="collapse mb-1" id="bikesDropdown">
+                <div class="border p-2">
+                    <p><a href="#">Full Builds</a></p>
+                    <p class="mb-0"><a href="#">Frames and Forks</a></p>
+                </div>
+            </div>
+            <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#componentsDropdown" aria-expanded="false" aria-controls="collapseExample">
+                Components
+            </button>
+            <div class="collapse mb-1" id="componentsDropdown">
+                <div class="border p-2">
+                    <p><a href="#">Drivetrain</a></p>
+                    <p><a href="#">Wheels</a></p>
+                    <p><a href="#">Tyres</a></p>
+                    <p><a href="#">Brakes and Pads</a></p>
+                    <p><a href="#">Saddles</a></p>
+                    <p><a href="#">Pedals</a></p>
+                    <p><a href="#">Bars, Stems and Seatposts</a></p>
+                    <p class="mb-0"><a href="#">Other</a></p>
+                </div>
+            </div>
+            <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#accessoriesDropdown" aria-expanded="false" aria-controls="collapseExample">
+                Accessories
+            </button>
+            <div class="collapse mb-1" id="accessoriesDropdown">
+                <div class="border p-2">
+                    <p><a href="#">GPS & Computer</a></p>
+                    <p><a href="#">Power Meters</a></p>
+                    <p><a href="#">Lights</a></p>
+                    <p><a href="#">Trainers</a></p>
+                    <p class="mb-0"><a href="#">Other</a></p>
+                </div>
+            </div>
+            <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#clothingDropdown" aria-expanded="false" aria-controls="collapseExample">
+                Clothing
+            </button>
+            <div class="collapse mb-1" id="clothingDropdown">
+                <div class="border p-2">
+                    <p><a href="#">Tops</a></p>
+                    <p><a href="#">Bottoms</a></p>
+                    <p><a href="#">Base layers</a></p>
+                    <p><a href="#">Jackets</a></p>
+                    <p><a href="#">Shoes</a></p>
+                    <p><a href="#">Glasses</a></p>
+                    <p class="mb-0"><a href="#">Other</a></p>
+                </div>
+            </div>
+            <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#workshopDropdown" aria-expanded="false" aria-controls="collapseExample">
+                Workshop
+            </button>
+            <div class="collapse mb-1" id="workshopDropdown">
+                <div class="border p-2">
+                    <p><a href="#">Tools</a></p>
+                    <p><a href="#">Cleaning</a></p>
+                    <p><a href="#">Lubricant</a></p>
+                    <p class="mb-0"><a href="#">Other</a></p>
+                </div>
+            </div>
+            <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#otherDropdown" aria-expanded="false" aria-controls="collapseExample">
+                Other
+            </button>
+            <div class="collapse mb-1" id="otherDropdown">
+                <div class="border p-2">
+                    <p class="mb-0"><a href="#">Other</a></p>
+                </div>
+            </div>
+        </div>
         {% for review in reviews %}
         {% if loop.index % 2 != 0 %}
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card mb-3">
                 <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap">
                 <div class="card-body">
@@ -16,7 +87,7 @@
             </div>
         </div>
         {% else %}
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card mb-3">
                 <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap">
                 <div class="card-body">
