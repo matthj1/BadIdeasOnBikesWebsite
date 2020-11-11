@@ -2,13 +2,14 @@
     {% block content %}
     <div class="row">
         <div class="col-md-3">
+            <a href="{{ url_for('reviews.reviewPage') }}" class="btn btn-block btn-dark mb-2">All</a>
             <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#bikesDropdown" aria-expanded="false" aria-controls="collapseExample">
                 Bikes
             </button>
             <div class="collapse mb-1" id="bikesDropdown">
                 <div class="border p-2">
-                    <p><a href="#">Full Builds</a></p>
-                    <p class="mb-0"><a href="#">Frames and Forks</a></p>
+                    <p><a href="{{ url_for('reviews.reviewtypePage', review_type='Bike - full build') }}">Full Builds</a></p>
+                    <p class="mb-0"><a href="{{ url_for('reviews.reviewtypePage', review_type='Bike - frame and fork') }}">Frames and Forks</a></p>
                 </div>
             </div>
             <button class="btn btn-block btn-dark mb-2" type="button" data-toggle="collapse" data-target="#componentsDropdown" aria-expanded="false" aria-controls="collapseExample">
@@ -72,6 +73,12 @@
                 </div>
             </div>
         </div>
+        {% if not reviews %}
+        <div class="col-md-8">
+            <h2>No Reviews Yet!</h2>
+            <p>If You'd like to get in touch about a product please contact me here...</p>
+        </div>
+        {% endif %}
         {% for review in reviews %}
         {% if loop.index % 2 != 0 %}
         <div class="col-md-4">

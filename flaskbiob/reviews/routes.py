@@ -53,3 +53,9 @@ def updatereviewPage(review_id):
 def reviewPage():
     reviews = db.session.query(Posts).all()
     return render_template("Reviews.html", reviews=reviews)
+
+
+@reviews.route("/reviews/filtered/<review_type>", methods=["GET", "POST"])
+def reviewtypePage(review_type):
+    reviews = db.session.query(Posts).join(Posts.reviews).filter(Reviews.category == review_type).all()
+    return render_template("Reviews.html", reviews=reviews)
