@@ -79,9 +79,9 @@
             <p>If You'd like to get in touch about a product please contact me here...</p>
         </div>
         {% endif %}
-        {% for review in reviews %}
-        {% if loop.index % 2 != 0 %}
         <div class="col-md-4">
+            {% for review in reviews %}
+            {% if loop.index % 2 != 0 %}
             <div class="card mb-3">
                 <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap">
                 <div class="card-body">
@@ -92,9 +92,12 @@
                     <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
                 </div>
             </div>
+            {% endif %}
+            {% endfor %}
         </div>
-        {% else %}
         <div class="col-md-4">
+            {% for review in reviews %}
+            {% if loop.index % 2 == 0 %}
             <div class="card mb-3">
                 <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap">
                 <div class="card-body">
@@ -105,8 +108,8 @@
                     <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
                 </div>
             </div>
+            {% endif %}
+            {% endfor %}
         </div>
-        {% endif %}
-        {% endfor %}
     </div>
     {% endblock %}
