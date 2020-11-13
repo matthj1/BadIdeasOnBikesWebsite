@@ -217,7 +217,7 @@
                 <tbody>
                 {% for route in my_routes %}
                     <tr>
-                        <th scope="row"><a href="{{ url_for('posts.postPage', post_id=route.post) }}">{{ route.title }}</a></th>
+                        <th scope="row"><a href="{{ url_for('posts.postPage', post_id=route.post) }}" class="custom-link">{{ route.title }}</a></th>
                         <td>{{ route.region }}</td>
                         <td>{{ route.starting_location }}</td>
                         <td>{{ route.length }} km</td>

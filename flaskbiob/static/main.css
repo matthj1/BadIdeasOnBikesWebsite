@@ -124,3 +124,52 @@ figcaption{
     top: 70px;
     z-index: -1;
 }
+
+.review-price{
+    float: right;
+    padding: 5px 0px 0px 0px;
+    color: #8c1f1f;
+}
+
+.card-title{
+    color: #8c1f1f;
+}
+
+a:link {
+  color: #bf4a4a;
+}
+
+a:visited {
+  color: #bf4a4a;
+}
+
+a:hover {
+  color: #8c1f1f;
+  text-decoration: none;
+}
+
+a:active {
+  color: #8c1f1f;
+}
+
+
+a.btn-dark:link, a.btn-dark:visited{
+    color: #ffffff;
+}
+
+.btn-dark {
+    background: #14202a;
+}
+
+.btn-dark:hover {
+    background: #1b2a36;
+    border-color: #1b2a36;
+}
+
+btn-custom-red {
+    background: #8c1f1f;
+}
+
+btn-custom-red:hover {
+    background: #bf4a4a;
+}
