@@ -58,5 +58,6 @@ def reviewPage():
 
 @reviews.route("/reviews/filtered/<review_type>", methods=["GET", "POST"])
 def reviewtypePage(review_type):
-    reviews = db.session.query(Posts).join(Posts.reviews).filter(Reviews.category == review_type).all()
+    page = request.args.get("page", 1, type=int)
+    reviews = db.session.query(Posts).join(Posts.reviews).filter(Reviews.category == review_type).order_by(Posts.date.desc()).paginate(page=page, per_page=10)
     return render_template("Reviews.html", reviews=reviews)
