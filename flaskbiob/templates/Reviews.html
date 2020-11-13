@@ -81,7 +81,7 @@
         </div>
         {% endif %}
         <div class="col-md-4">
-            {% for review in reviews %}
+            {% for review in reviews.items %}
             {% if loop.index % 2 != 0 %}
             <div class="card mb-3">
                 <a href="{{ url_for('posts.postPage', post_id=review.id) }}"><img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap"></a>
@@ -98,7 +98,7 @@
             {% endfor %}
         </div>
         <div class="col-md-4">
-            {% for review in reviews %}
+            {% for review in reviews.items %}
             {% if loop.index % 2 == 0 %}
             <div class="card mb-3">
                 <a href="{{ url_for('posts.postPage', post_id=review.id) }}"><img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap"></a>
@@ -114,5 +114,19 @@
             {% endif %}
             {% endfor %}
         </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item {% if not reviews.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('reviews.reviewPage', page=1) }}">First</a></li>
+                <li class="page-item {% if not reviews.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('reviews.reviewPage', page=reviews.prev_num) }}">Previous</a></li>
+                {% for page_num in reviews.iter_pages() %}
+                {% if page_num %}
+                <li class="page-item {% if reviews.page == page_num %}active{% endif %}"><a class="page-link" href="{{ url_for('reviews.reviewPage', page=page_num) }}">{{ page_num }}</a></li>
+                {% endif %}
+                {% endfor %}
+                <li class="page-item {% if not reviews.has_next %}disabled{% endif %}"><a class="page-link" href="{{ url_for('reviews.reviewPage', page=reviews.next_num) }}">Next</a></li>
+            </ul>
+        </nav>
     </div>
     {% endblock %}

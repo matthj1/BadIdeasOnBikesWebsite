@@ -51,7 +51,8 @@ def updatereviewPage(review_id):
 
 @reviews.route("/reviews")
 def reviewPage():
-    reviews = db.session.query(Posts).filter(Posts.post_type == "Review").all()
+    page = request.args.get("page", 1, type=int)
+    reviews = db.session.query(Posts).filter(Posts.post_type == "Review").order_by(Posts.date.desc()).paginate(page=page, per_page=10)
     return render_template("Reviews.html", reviews=reviews)
 
 
