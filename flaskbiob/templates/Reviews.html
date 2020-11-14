@@ -80,39 +80,27 @@
             <p>If You'd like to get in touch about a product please contact me here...</p>
         </div>
         {% endif %}
-        <div class="col-md-4">
+        <div class="col-md-8">
+            <div class="card-deck">
             {% for review in reviews.items %}
-            {% if loop.index % 2 != 0 %}
-            <div class="card mb-3">
-                <a href="{{ url_for('posts.postPage', post_id=review.id) }}"><img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title">{{ review.reviews.title }}</h5>
-                    <p class="card-text">{{ review.leader }}</p>
+                {% if review.reviews %}
+                <div class="card mb-3">
+                    <a href="{{ url_for('posts.postPage', post_id=review.id) }}"><img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ review.reviews.title }}</h5>
+                        <p class="card-text">{{ review.leader }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
+                        <h4 class="review-price">£{{ "{:.2f}".format(review.reviews.rrp) }} </h4>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
-                    <h4 class="review-price">£{{ "{:.2f}".format(review.reviews.rrp) }} </h4>
-                </div>
-            </div>
-            {% endif %}
+                {% if loop.index % 2 == 0 %}
+                    <div class="w-100 d-block"><!-- block layout--></div>
+                {% endif %}
+                {% endif %}
             {% endfor %}
-        </div>
-        <div class="col-md-4">
-            {% for review in reviews.items %}
-            {% if loop.index % 2 == 0 %}
-            <div class="card mb-3">
-                <a href="{{ url_for('posts.postPage', post_id=review.id) }}"><img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + review.post_image) }}" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title">{{ review.reviews.title }}</h5>
-                    <p class="card-text">{{ review.leader }}</p>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
-                    <h4 class="review-price">£{{ "{:.2f}".format(review.reviews.rrp) }} </h4>
-                </div>
             </div>
-            {% endif %}
-            {% endfor %}
         </div>
     </div>
     <div class="d-flex justify-content-center p-3">

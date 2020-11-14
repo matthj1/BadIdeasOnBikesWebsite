@@ -173,3 +173,8 @@ btn-custom-red {
 btn-custom-red:hover {
     background: #bf4a4a;
 }
+
+.card-deck{
+    @include media-breakpoint-only(md) {
+    column-count: 2;
+}
