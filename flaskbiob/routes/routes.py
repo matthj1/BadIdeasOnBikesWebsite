@@ -63,6 +63,7 @@ def updateroutePage(route_id):
 
 @routes.route("/routes", methods=["GET", "POST"])
 def routesPage():
+    page = request.args.get("page", 1, type=int)
     form = RouteFilterForm()
     query = Routes.query
     if form.validate_on_submit():
@@ -109,8 +110,8 @@ def routesPage():
                 query = query.order_by(Routes.quietness.asc())
             elif form.sort_by.data[0] == "Quietness descending":
                 query = query.order_by(Routes.quietness.desc())
-        results = query.all()
+        results = query.paginate(page=page, per_page=25)
         print(results)
         return render_template("Routes.html", my_routes=results, form=form, filtered=True)
-    my_routes = Routes.query.all()
+    my_routes = Routes.query.paginate(page=page, per_page=25)
     return render_template("Routes.html", my_routes=my_routes, form=form, filtered=False)

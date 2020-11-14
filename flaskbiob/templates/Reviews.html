@@ -89,7 +89,7 @@
                     <h5 class="card-title">{{ review.reviews.title }}</h5>
                     <p class="card-text">{{ review.leader }}</p>
                 </div>
-                <div class="card-body">
+                <div class="card-footer">
                     <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
                     <h4 class="review-price">£{{ "{:.2f}".format(review.reviews.rrp) }} </h4>
                 </div>
@@ -106,7 +106,7 @@
                     <h5 class="card-title">{{ review.reviews.title }}</h5>
                     <p class="card-text">{{ review.leader }}</p>
                 </div>
-                <div class="card-body">
+                <div class="card-footer">
                     <a href="{{ url_for('posts.postPage', post_id=review.id) }}" class="btn btn-dark">Read More</a>
                     <h4 class="review-price">£{{ "{:.2f}".format(review.reviews.rrp) }} </h4>
                 </div>
@@ -115,7 +115,7 @@
             {% endfor %}
         </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center p-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item {% if not reviews.has_prev %}disabled{% endif %}"><a class="page-link" href="{{ url_for('reviews.reviewPage', page=1) }}">First</a></li>
