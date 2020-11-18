@@ -1,9 +1,14 @@
 {% extends "BASE.html" %}
 {% block content %}
-                <div class="border mb-4">
-                    <div class="column p-4">
+                <div class="row border mb-4">
+                    <div class="col-md-12">
                         <h1>About Bad Ideas on Bikes</h1>
-                        <p class="lead">Here's some info about me...</p>
+                        <p class="lead">My name is Joe and I’m mad about bikes...</p>
+                        <p>I started this website in 2020 during the Covid-19 pandemic while making a push to change my career trajectory away from medical imaging and into software development (not an easy task in the middle of a global pandemic!). What started as a small project to learn some basics of web development quickly grew into what you see before you.</p>
+                        <p>I have an obsession with mapping, route planning and exploring. I love to cycle in new places and I’m constantly on the lookout for the next adventure. I wanted to share some of the best routes I’ve ridden because I’m passionate about inspiring everyone to get out and ride. The UK is stuffed full of hidden gems and amazing roads.</p>
+                        <p>This website is perhaps a little poorly named because I don’t think anything I’ve written about or intend to write about is actually a bad idea. Quite the contrary actually, but most of the rides I write about are intended to be all day epics rather than quick spins. I think a great ride captures beautiful scenery, interesting and unique locations and gives you a great sense of achievement. With that in mind, a lot of the routes that I intend to cover are quite difficult (for me anyway, not if you’re Primoz Roglic).</p>
+                        <p>All <a href="{{ url_for('routes.routesPage') }}">routes</a> have three different ratings, brutality, scenery and quietness. These are all subjective rather than objective measures. I’d hope that brutality is descriptive enough on it’s own, but it usually relates to climbing, how much and how steep. Rides with relentless double figure gradient climbs like those found in the peak district score highly here. Scenery is equally subjective and should be self explanatory. Quietness is important to me. I’ve got little time for being mowed down by traffic, so the more quiet and isolated the ride, the better. Your opinion may differ although I doubt anyone enjoys riding on a main road.</p>
+                        <p>I intend to make all the routes accessible for those travelling. At the moment I live in Bourne, Lincolnshire, which is so out of the way it may as well not exist. There’s no point in me writing about rides starting from here as there’s no infrastructure and no other reason to come here. Obviously it’s up to you to modify the routes to make them work for your starting location but if you want to follow the routes exactly they all start at an accessible car park or near a train station.</p>
                     </div>
                 </div>
 {% endblock content %}
