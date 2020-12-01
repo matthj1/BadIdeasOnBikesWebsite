@@ -174,7 +174,13 @@ btn-custom-red:hover {
     background: #bf4a4a;
 }
 
-.card-deck{
+.card-deck {
     @include media-breakpoint-only(md) {
     column-count: 2;
+}
+}
+
+.rating-stars {
+    width: 80px;
+    height: auto;
 }

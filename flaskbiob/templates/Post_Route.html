@@ -25,9 +25,9 @@
                                         <td>{{ route.starting_location }}</td>
                                         <td>{{ route.length }} km</td>
                                         <td>{{ route.ascent }} m</td>
-                                        <td>{{ route.scenery }}</td>
-                                        <td>{{ route.brutality }}</td>
-                                        <td>{{ route.quietness }}</td>
+                                        <td><img src="{{ url_for('static', filename='/icons/' + route.scenery|string + '.png') }}" class="rating-stars" title="{{ route.scenery }}/10"></td>
+                                        <td><img src="{{ url_for('static', filename='/icons/' + route.brutality|string + '.png') }}" class="rating-stars" title="{{ route.brutality }}/10"></td>
+                                        <td><img src="{{ url_for('static', filename='/icons/' + route.quietness|string + '.png') }}" class="rating-stars" title="{{ route.quietness }}/10"></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -35,7 +35,7 @@ class ReviewForm(FlaskForm):
                                                 "Other - Other"
                                                 ])
 
-    rating = SelectField("Rating", choices=[1, 2, 3, 4, 5])
+    rating = SelectField("Rating", choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     manufacturer = StringField("Manufacturer", validators=[DataRequired()])
     product_name = StringField("Product Name", validators=[DataRequired()])
     RRP = FloatField("RRP", validators=[DataRequired()])

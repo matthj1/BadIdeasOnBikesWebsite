@@ -13,9 +13,9 @@ class RouteForm(FlaskForm):
     ascent = IntegerField("Ride height gain in meters", validators=[DataRequired()])
     description = TextAreaField("Short description of ride", validators=[DataRequired()])
     link = StringField("RWGPS ID", validators=[DataRequired()])
-    scenery = SelectField("Rate the scenery out of 5", choices=[1, 2, 3, 4, 5])
-    brutality = SelectField("Rate the brutality out of 5", choices=[1, 2, 3, 4, 5])
-    quietness = SelectField("Rate how quiet the route is out of 5", choices=[1, 2, 3, 4, 5])
+    scenery = SelectField("Rate the scenery out of 5", choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    brutality = SelectField("Rate the brutality out of 5", choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    quietness = SelectField("Rate how quiet the route is out of 5", choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     submit = SubmitField("Submit route")
 
 
@@ -31,12 +31,12 @@ class RouteFilterForm(FlaskForm):
     length_max = IntegerField("Maximum ride length", validators=[validators.Optional()])
     ascent_min = IntegerField("Minimum ride ascent", validators=[validators.Optional()])
     ascent_max = IntegerField("Maximum ride ascent", validators=[validators.Optional()])
-    scenery_min = SelectField("Minimum scenery rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
-    scenery_max = SelectField("Maximum scenery rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
-    brutality_min = SelectField("Minimum brutality rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
-    brutality_max = SelectField("Maximum brutality rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
-    quietness_min = SelectField("Minimum quietness rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
-    quietness_max = SelectField("Maximum quietness rating", choices=["None", 1, 2, 3, 4, 5], validators=[validators.Optional()])
+    scenery_min = SelectField("Minimum scenery rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
+    scenery_max = SelectField("Maximum scenery rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
+    brutality_min = SelectField("Minimum brutality rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
+    brutality_max = SelectField("Maximum brutality rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
+    quietness_min = SelectField("Minimum quietness rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
+    quietness_max = SelectField("Maximum quietness rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
     #sort by
     sort_by = SelectMultipleField("Sort by:", choices=[("Length ascending", "Length ascending"),
                                                        ("Length descending", "Length descending"),
