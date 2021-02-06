@@ -1,0 +1,22 @@
+{
+  "name": "badideasonbikeswebsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthj1/BadIdeasOnBikesWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthj1/BadIdeasOnBikesWebsite/issues"
+  },
+  "homepage": "https://github.com/matthj1/BadIdeasOnBikesWebsite#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0"
+  }
+}

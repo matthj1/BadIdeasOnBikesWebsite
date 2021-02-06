@@ -1,0 +1,21 @@
+$red-dark: #8c1f1f;
+$red-light: #BF4A4A;
+$dark: #14202a;
+
+$pagination-active-bg: $red-dark;
+
+$pagination-hover-bg: $red-light;
+$pagination-hover-border-color: $red-light;
+
+$primary: $red-dark;
+
+$font-family-base:'Roboto', sans-serif;
+$font-weight-light:           200 !default;
+$font-weight-normal:          300 !default;
+$h5-font-size: 1.5rem;
+
+$enable-responsive-font-sizes: true;
+
+$navbar-brand-font-size: 1.5rem;
+
+@import "node_modules/bootstrap/scss/bootstrap";
