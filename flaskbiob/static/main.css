@@ -2,6 +2,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Bebas Neue";
 }
 
+body { overflow-x: hidden; width: 100vw;}
+
+.navbar {
+  font-size: 120%;
+}
+
 .bebas {
   font-family: "Bebas Neue";
 }
@@ -96,8 +102,8 @@ figcaption{
     color: #8c1f1f;
 }
 
-.card-title{
-    color: #8c1f1f;
+.table{
+  font-size: 80%;
 }
 
 .btn-custom-red {
