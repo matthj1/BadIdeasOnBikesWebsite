@@ -1,7 +1,11 @@
 {% extends "BASE.html" %}
 {% block content %}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
+            Menu go brrrrr
+        </div>
+        <!--
+        <div class="col-md-8">
             <button class="btn btn-primary btn-sm m-2" type="button" data-toggle="collapse" data-target="#collapsefilters" aria-expanded="false" aria-controls="collapsefilters">
                 Filters
             </button>
@@ -200,6 +204,54 @@
                 </form>
                 </div>
         </div>
+    -->
+        <div class="col-md-9">
+            {% for route in my_routes.items %}
+            <div class="flexiboi">
+                <div class="routecontainer">
+                    <div class="route-title"><a href="{{ url_for('posts.postPage', post_id=route.post) }}">{{ route.title }}</a></div>
+                    <div class="flexinner">
+                        <div class="route-location">
+                            <table>
+                                <tr>
+                                    <th>Location</th><td></td>
+                                </tr>
+                                <tr>
+                                    <th>Region</th><td>{{ route.region }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Start</th><td>{{ route.starting_location }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="route-vitals">
+                            <table>
+                                <tr>
+                                    <th>Vitals</th><td></td>
+                                </tr>
+                                <tr>
+                                    <th>Distance</th><td>{{ route.length }} km</td>
+                                </tr>
+                                <tr>
+                                    <th>Ascent</th><td>{{ route.ascent }} m</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="ratingcontainer">
+                    <div class="route-title">Ratings</div>
+                    <div class="flexiratings">
+                        <div><div class="thicker">Scenery:</div> <img src="{{ url_for('static', filename='/icons/' + route.scenery|string + '.png') }}" class="rating-stars" title="{{ route.scenery }}/10"></div>
+                        <div><div class="thicker">Brutality:</div> <img src="{{ url_for('static', filename='/icons/' + route.brutality|string + '.png') }}" class="rating-stars" title="{{ route.brutality }}/10"></div>
+                        <div><div class="thicker">Quietness:</div> <img src="{{ url_for('static', filename='/icons/' + route.quietness|string + '.png') }}" class="rating-stars" title="{{ route.quietness }}/10"></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!--
         <div class="col-md-12">
             <table class="table">
                 <thead>
@@ -230,6 +282,7 @@
                 </tbody>
             </table>
         </div>
+    -->
     </div>
     <div class="d-flex justify-content-center p-3">
         <nav aria-label="Page navigation example">

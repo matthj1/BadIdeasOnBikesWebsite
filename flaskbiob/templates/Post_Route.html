@@ -7,32 +7,46 @@
                         <p class="lead">{{ post.leader }}</p>
                         <hr>
                         {% if route %}
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Region</th>
-                                        <th scope="col">Starts</th>
-                                        <th scope="col">Length</th>
-                                        <th scope="col">Ascent</th>
-                                        <th scope="col">Scenery</th>
-                                        <th scope="col">Brutality</th>
-                                        <th scope="col">Quietness</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">{{ route.region }}</th>
-                                        <td>{{ route.starting_location }}</td>
-                                        <td>{{ route.length }} km</td>
-                                        <td>{{ route.ascent }} m</td>
-                                        <td><img src="{{ url_for('static', filename='/icons/' + route.scenery|string + '.png') }}" class="rating-stars" title="{{ route.scenery }}/10"></td>
-                                        <td><img src="{{ url_for('static', filename='/icons/' + route.brutality|string + '.png') }}" class="rating-stars" title="{{ route.brutality }}/10"></td>
-                                        <td><img src="{{ url_for('static', filename='/icons/' + route.quietness|string + '.png') }}" class="rating-stars" title="{{ route.quietness }}/10"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="flexiboi">
+                          <div class="routecontainer">
+                              <div class="flexinner">
+                                  <div class="route-location">
+                                      <table>
+                                          <tr>
+                                              <th>Location</th><td></td>
+                                          </tr>
+                                          <tr>
+                                              <th>Region</th><td>{{ route.region }}</td>
+                                          </tr>
+                                          <tr>
+                                              <th>Start</th><td>{{ route.starting_location }}</td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                                  <div class="route-vitals">
+                                      <table>
+                                          <tr>
+                                              <th>Vitals</th><td></td>
+                                          </tr>
+                                          <tr>
+                                              <th>Distance</th><td>{{ route.length }} km</td>
+                                          </tr>
+                                          <tr>
+                                              <th>Ascent</th><td>{{ route.ascent }} m</td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="ratingcontainer">
+                              <div class="flexiratings">
+                                  <div><div class="thicker">Scenery:</div> <img src="{{ url_for('static', filename='/icons/' + route.scenery|string + '.png') }}" class="rating-stars" title="{{ route.scenery }}/10"></div>
+                                  <div><div class="thicker">Brutality:</div> <img src="{{ url_for('static', filename='/icons/' + route.brutality|string + '.png') }}" class="rating-stars" title="{{ route.brutality }}/10"></div>
+                                  <div><div class="thicker">Quietness:</div> <img src="{{ url_for('static', filename='/icons/' + route.quietness|string + '.png') }}" class="rating-stars" title="{{ route.quietness }}/10"></div>
+                              </div>
+                          </div>
+                      </div>
                         {% endif %}
-                        <hr>
                         <p>{{ post.content | safe }}</p>
                         <hr>
                         <small class="text-muted">by <a href="{{ url_for('users.userpostPage', username=post.author.username) }}">{{ post.author.username }}</a></small>

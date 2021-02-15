@@ -120,7 +120,124 @@ figcaption{
 }
 }
 
-.rating-stars {
-    width: 80px;
-    height: auto;
+/* route stuff */
+.flexiboi {
+  display: flex;
+  border-bottom: 5px solid #8c1f1f;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
+
+.route-title > a {
+  color: white;
+}
+
+.flexinner {
+  display: flex;
+}
+
+.routecontainer{
+  flex-basis: 72%;
+  font-size: 0.9rem;
+}
+
+.ratingcontainer {
+  flex-basis: 28%;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+td {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media screen and (max-width: 1000px){
+  .flexiboi {
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    padding-bottom: 2rem;
+  }
+
+  .flexiratings {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .routecontainer{
+    border-bottom: 1px solid #adb5bd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .ratingcontainer > .route-title {
+    display: none;
+  }
+
+  .route-location {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .flexinner{
+    flex-direction: column;
+  }
+  .route-location {
+    border-bottom: 1px solid #adb5bd;
+  }
+  .routecontainer {
+    border-bottom: none;
+  }
+  .route-vitals {
+    border-bottom: 1px solid #adb5bd;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.routecontainer > * {
+  padding-left: 1rem;
+}
+
+.ratingcontainer > * {
+  padding-left: 1rem;
+}
+
+.route-title{
+  grid-area: title;
+  background-color: #14202a;
+  color: #ffffff;
+  font-family: "Bebas Neue";
+  font-size: 1.25rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.route-location {
+  flex-basis: 65%;
+}
+
+.route-vitals {
+  flex-basis: 35%;
+}
+
+.rating-stars {
+  width: 80px;
+  height: auto;
+}
+
+.thicker{
+  display: inline-block;
+  width: 80px;
+  font-weight: 700;
+  padding: 0.05rem;
+}
+/*
+"title title title title title title "
+  "region-title region region region"
+  "starts-title starts starts starts "
+  "distance-title distance ascent-title ascent"
+*/
