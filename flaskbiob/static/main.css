@@ -235,6 +235,14 @@ td {
   font-weight: 700;
   padding: 0.05rem;
 }
+
+.slider-base {
+  margin: 10px 20px 10px 10px;
+}
+
+.hide-me {
+  display: none;
+}
 /*
 "title title title title title title "
   "region-title region region region"

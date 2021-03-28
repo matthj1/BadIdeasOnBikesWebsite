@@ -1,210 +1,231 @@
 {% extends "BASE.html" %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{{ url_for('static', filename='nouislider/distribute/nouislider.css') }}">
+{% endblock extrahead %}
+
+
 {% block content %}
     <div class="row">
         <div class="col-md-3">
-            Menu go brrrrr
-        </div>
-        <!--
-        <div class="col-md-8">
-            <button class="btn btn-primary btn-sm m-2" type="button" data-toggle="collapse" data-target="#collapsefilters" aria-expanded="false" aria-controls="collapsefilters">
+            {% if filtered %}
+                <a href="{{ url_for('routes.routesPage') }}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Clear Filters</a>
+            {% endif %}
+            <button class="btn btn-primary btn-sm m-2" id="filter-button" onclick="toggleFilters()">
                 Filters
             </button>
-            {% if filtered %}
-                <a href="{{ url_for('routes.routesPage') }}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Clear Search</a>
-            {% endif %}
-            <div id="collapsefilters" class="panel-collapse collapse">
-            <form method="POST" action="" enctype="multipart/form-data">
-            {{form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">
-                    Sort and Filter
-                </legend>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            {{ form.region.label(class="form-control-label") }}
+            <div id="collapsefilters" class="hide-me">
+                <form method="POST" action="" enctype="multipart/form-data">
+                {{form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">
+                        Sort and Filter
+                    </legend>
+                    <div class="form-group">
+                        {{ form.region.label(class="form-control-label") }}
 
-                            {% if form.region.errors %}
-                                {{ form.region(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.region.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.region(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
+                        {% if form.region.errors %}
+                            {{ form.region(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.region.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.region(class="form-control form-control-sm") }}
+                        {% endif %}
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            {{ form.length_min.label(class="form-control-label") }}
-
-                            {% if form.length_min.errors %}
-                                {{ form.length_min(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.length_min.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.length_min(class="form-control form-control-sm") }}
-                            {% endif %}
+                    <div class="form-group">
+                        <div class="form-control-label">Distance</div>
+                        <div class="slider-base">
+                        <div id="distance-slider"></div>
                         </div>
-                        <div class="form-group">
-                            {{ form.length_max.label(class="form-control-label") }}
-
-                            {% if form.length_max.errors %}
-                                {{ form.length_max(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.length_max.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.length_max(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.ascent_min.label(class="form-control-label") }}
-
-                            {% if form.ascent_min.errors %}
-                                {{ form.ascent_min(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.ascent_min.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.ascent_min(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.ascent_max.label(class="form-control-label") }}
-
-                            {% if form.ascent_max.errors %}
-                                {{ form.ascent_max(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.ascent_max.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.ascent_max(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
+                        <table>
+                            <tr>
+                                <td id="distance-slider-min"></td>
+                                <td id="distance-slider-max"></td>
+                            </tr>
+                        </table>
+                        {% if form.length_min.errors %}
+                            {{ form.length_min(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.length_min.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.length_min(class="form-control form-control-sm") }}
+                        {% endif %}
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            {{ form.scenery_min.label(class="form-control-label") }}
-
-                            {% if form.scenery_min.errors %}
-                                {{ form.scenery_min(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.scenery_min.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.scenery_min(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.scenery_max.label(class="form-control-label") }}
-
-                            {% if form.scenery_max.errors %}
-                                {{ form.scenery_max(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.scenery_max.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.scenery_max(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.brutality_min.label(class="form-control-label") }}
-
-                            {% if form.brutality_min.errors %}
-                                {{ form.brutality_min(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.brutality_min.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.brutality_min(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.brutality_max.label(class="form-control-label") }}
-
-                            {% if form.brutality_max.errors %}
-                                {{ form.brutality_max(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.brutality_max.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.brutality_max(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.quietness_min.label(class="form-control-label") }}
-
-                            {% if form.quietness_min.errors %}
-                                {{ form.quietness_min(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.quietness_min.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.quietness_min(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.quietness_max.label(class="form-control-label") }}
-
-                            {% if form.quietness_max.errors %}
-                                {{ form.quietness_max(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.quietness_max.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.quietness_max(class="form-control form-control-sm") }}
-                            {% endif %}
-                        </div>
+                    <div class="form-group">
+                        {% if form.length_max.errors %}
+                            {{ form.length_max(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.length_max.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.length_max(class="form-control form-control-sm") }}
+                        {% endif %}
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            {{ form.sort_by.label(class="form-control-label") }}
-
-                            {% if form.sort_by.errors %}
-                                {{ form.sort_by(class="form-control form-control-sm is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.sort_by.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.sort_by(class="form-control form-control-sm") }}
-                            {% endif %}
+                    <div class="form-group">
+                        <div class="form-control-label">Ascent</div>
+                        <div class="slider-base">
+                            <div id="ascent-slider"></div>
                         </div>
+                                <table>
+                                    <tr>
+                                        <td id="ascent-slider-min"></td>
+                                        <td id="ascent-slider-max"></td>
+                                    </tr>
+                                </table>
+                        {% if form.ascent_min.errors %}
+                            {{ form.ascent_min(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.ascent_min.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.ascent_min(class="form-control form-control-sm") }}
+                        {% endif %}
                     </div>
-                </div>
+                    <div class="form-group">
+                        {% if form.ascent_max.errors %}
+                            {{ form.ascent_max(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.ascent_max.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.ascent_max(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control-label">Scenery</div>
+                        <div class="slider-base">
+                            <div id="scenery-slider"></div>
+                        </div>
+                                <table>
+                                    <tr>
+                                        <td id="scenery-slider-min"></td>
+                                        <td id="scenery-slider-max"></td>
+                                    </tr>
+                                </table>
+                        {% if form.scenery_min.errors %}
+                            {{ form.scenery_min(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.scenery_min.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.scenery_min(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.scenery_max.errors %}
+                            {{ form.scenery_max(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.scenery_max.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.scenery_max(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control-label">Brutality</div>
+                        <div class="slider-base">
+                        <div id="brutality-slider"></div>
+                        </div>
+                        <table>
+                            <tr>
+                                <td id="brutality-slider-min"></td>
+                                <td id="brutality-slider-max"></td>
+                            </tr>
+                        </table>
+                        {% if form.brutality_min.errors %}
+                            {{ form.brutality_min(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.brutality_min.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.brutality_min(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.brutality_max.errors %}
+                            {{ form.brutality_max(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.brutality_max.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.brutality_max(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control-label">Quietness</div>
+                        <div class="slider-base">
+                        <div id="quietness-slider"></div>
+                        </div>
+                        <table>
+                            <tr>
+                                <td id="quietness-slider-min"></td>
+                                <td id="quietness-slider-max"></td>
+                            </tr>
+                        </table>
+                        {% if form.quietness_min.errors %}
+                            {{ form.quietness_min(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.quietness_min.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.quietness_min(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.quietness_max.errors %}
+                            {{ form.quietness_max(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.quietness_max.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.quietness_max(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.sort_by.label(class="form-control-label") }}
+
+                        {% if form.sort_by.errors %}
+                            {{ form.sort_by(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.sort_by.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.sort_by(class="form-control form-control-sm") }}
+                        {% endif %}
+                    </div>
                     </fieldset>
                         <div class="form-group">
                             {{form.submit(class="btn btn-primary btn-sm")}}
                         </div>
                 </form>
-                </div>
         </div>
-    -->
+        </div>
         <div class="col-md-9">
             {% for route in my_routes.items %}
             <div class="flexiboi">
@@ -250,39 +271,6 @@
             </div>
             {% endfor %}
         </div>
-
-        <!--
-        <div class="col-md-12">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Region</th>
-                        <th scope="col">Start</th>
-                        <th scope="col">Length</th>
-                        <th scope="col">Ascent</th>
-                        <th scope="col">Scenery</th>
-                        <th scope="col">Brutality</th>
-                        <th scope="col">Quietness</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for route in my_routes.items %}
-                    <tr>
-                        <th scope="row"><a href="{{ url_for('posts.postPage', post_id=route.post) }}" class="custom-link">{{ route.title }}</a></th>
-                        <td>{{ route.region }}</td>
-                        <td>{{ route.starting_location }}</td>
-                        <td>{{ route.length }} km</td>
-                        <td>{{ route.ascent }} m</td>
-                        <td><img src="{{ url_for('static', filename='/icons/' + route.scenery|string + '.png') }}" class="rating-stars" title="{{ route.scenery }}/10"></td>
-                        <td><img src="{{ url_for('static', filename='/icons/' + route.brutality|string + '.png') }}" class="rating-stars" title="{{ route.brutality }}/10"></td>
-                        <td><img src="{{ url_for('static', filename='/icons/' + route.quietness|string + '.png') }}" class="rating-stars" title="{{ route.quietness }}/10"></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    -->
     </div>
     <div class="d-flex justify-content-center p-3">
         <nav aria-label="Page navigation example">
@@ -298,4 +286,42 @@
             </ul>
         </nav>
     </div>
+    <script type="module" src="{{ url_for('static', filename='js/sliders.js') }}"></script>
+    <script>
+        let hideButton = document.getElementById("filter-button");
+        let collapseFilters = document.getElementById("collapsefilters");
+
+        window.addEventListener('resize', showHideItems);
+        window.addEventListener('load', showHideItems)
+
+        function showHideItems(){
+            console.log("window size: " + window.innerWidth)
+            if (window.innerWidth > 766){
+                if (hideButton.classList.contains("hide-me") == false){
+                    hideButton.classList.add("hide-me");
+                }
+                if (collapseFilters.classList.contains("hide-me")){
+                    collapseFilters.classList.remove("hide-me");
+                }
+            }
+            else {
+                if (hideButton.classList.contains("hide-me")){
+                    hideButton.classList.remove("hide-me");
+                }
+                if (collapseFilters.classList.contains("hide-me") == false){
+                    collapseFilters.classList.add("hide-me");
+                }
+            }
+        }
+
+        function toggleFilters(){
+            console.log("Pressed!");
+            if(collapseFilters.classList.contains("hide-me")){
+                collapseFilters.classList.remove("hide-me");
+            }
+            else{
+                collapseFilters.classList.add("hide-me");
+            }
+        }
+    </script>
 {% endblock content %}

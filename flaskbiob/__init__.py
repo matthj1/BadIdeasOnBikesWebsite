@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from flaskbiob.config import Config
+from flask_wtf import CSRFProtect
 
 
 db = SQLAlchemy()
@@ -12,7 +13,6 @@ login_manager = LoginManager()
 login_manager.login_view = "users.loginPage"
 login_manager.login_message_category = "info"
 mail = Mail()
-
 
 def create_app(config_class=Config):
     app = Flask(__name__)

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, SelectField, IntegerField, SelectMultipleField, validators
+from wtforms import StringField, SubmitField, TextAreaField, SelectField, IntegerField, SelectMultipleField, HiddenField, validators
 from wtforms.validators import DataRequired
 
 
@@ -20,23 +20,23 @@ class RouteForm(FlaskForm):
 
 
 class RouteFilterForm(FlaskForm):
-    #filter by
+    # filter by
     region = SelectMultipleField("Region", choices=[("South East", "South East"), ("London", "London"),
                                                     ("North West", "North West"), ("East of England", "East of England"),
                                                     ("West Midlands", "West Midlands"), ("South West", "South West"),
                                                     ("Yorkshire and Humber", "Yorkshire and Humber"),
                                                     ("East Midlands", "East Midlands"), ("North East", "North East")],
                                  validators=[validators.Optional()])
-    length_min = IntegerField("Minimum ride length", validators=[validators.Optional()])
-    length_max = IntegerField("Maximum ride length", validators=[validators.Optional()])
-    ascent_min = IntegerField("Minimum ride ascent", validators=[validators.Optional()])
-    ascent_max = IntegerField("Maximum ride ascent", validators=[validators.Optional()])
-    scenery_min = SelectField("Minimum scenery rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
-    scenery_max = SelectField("Maximum scenery rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
-    brutality_min = SelectField("Minimum brutality rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
-    brutality_max = SelectField("Maximum brutality rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
-    quietness_min = SelectField("Minimum quietness rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
-    quietness_max = SelectField("Maximum quietness rating", choices=["None", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], validators=[validators.Optional()])
+    length_min = HiddenField("Minimum ride length", validators=[validators.Optional()])
+    length_max = HiddenField("Maximum ride length", validators=[validators.Optional()])
+    ascent_min = HiddenField("Minimum ride ascent", validators=[validators.Optional()])
+    ascent_max = HiddenField("Maximum ride ascent", validators=[validators.Optional()])
+    scenery_min = HiddenField("Minimum scenery rating", validators=[validators.Optional()])
+    scenery_max = HiddenField("Maximum scenery rating", validators=[validators.Optional()])
+    brutality_min = HiddenField("Minimum brutality rating", validators=[validators.Optional()])
+    brutality_max = HiddenField("Maximum brutality rating", validators=[validators.Optional()])
+    quietness_min = HiddenField("Minimum quietness rating", validators=[validators.Optional()])
+    quietness_max = HiddenField("Maximum quietness rating", validators=[validators.Optional()])
     #sort by
     sort_by = SelectMultipleField("Sort by:", choices=[("Length ascending", "Length ascending"),
                                                        ("Length descending", "Length descending"),
