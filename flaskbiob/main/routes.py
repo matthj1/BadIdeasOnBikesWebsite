@@ -16,3 +16,8 @@ def homePage():
 @main.route("/about")
 def aboutPage():
     return render_template("About.html")
+
+
+@main.route("/links")
+def linksPage():
+    return render_template("Links.html")

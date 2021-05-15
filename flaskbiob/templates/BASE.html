@@ -35,8 +35,8 @@
                   <li class="nav-item {% if request.endpoint == 'main.aboutPage' %} active {% endif %}">
                     <a class="nav-link bebas" href="{{ url_for('main.aboutPage') }}">About</a>
                   </li>
-                  <li class="nav-item {% if request.endpoint == 'main.linkPage' %} active {% endif %}">
-                    <a class="nav-link bebas" href="#">Links</a>
+                  <li class="nav-item {% if request.endpoint == 'main.linksPage' %} active {% endif %}">
+                    <a class="nav-link bebas" href="{{ url_for('main.linksPage') }}">Links</a>
                   </li>
                 </ul>
                   <ul class="navbar-nav ml-auto">

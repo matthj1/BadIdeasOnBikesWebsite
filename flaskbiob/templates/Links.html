@@ -1,0 +1,60 @@
+{% extends "BASE.html" %}
+{% block extrahead %}
+        <title>Bad Ideas on Bikes: Links</title>
+        <meta name="description" content="Links to sites that inspire me. Bad Ideas on Bikes aims to bring you some of the best bike routes in the UK. From steep hills and epic views, to quiet backwaters, there's epic routes to be ridden across the country">
+        <style>
+            h2{ position:relative; }
+            h2 span{ position:absolute; top:-80px;}
+            .top-offset{ top:80px;}
+        </style>
+{% endblock extrahead %}
+{% block content %}
+                <div class="row mb-4">
+                    <div class="col-md-3 border-right">
+                        <div class="sticky-top top-offset">
+                            <a href="#blogs" class="btn btn-block btn-dark mb-2">Blogs</a>
+                            <a href="#orgs" class="btn btn-block btn-dark mb-2">Organisations</a>
+                            <a href="#reviews" class="btn btn-block btn-dark mb-2">Reviews and Magazines</a>
+                            <a href="#youtube" class="btn btn-block btn-dark mb-2">Youtube and Podcasts</a>
+                    
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h1>Links to other cycling related resources</h1>
+
+                        <h2 class="mt-4"><span id="blogs"></span>Blogs</h2>
+
+                        <a href="https://cyclinguphill.com/"><h5>Cycling Uphill</h5></a>
+                        <p>Tejvan Pettinger's site has some really good write ups of some of the best and steepest hills in the UK. A former UK hill climb champion, he knows a thing or two about... err... cycling uphill.</p>
+
+                        <a href="https://www.100climbs.co.uk/"><h5>100 Climbs</h5></a>
+                        <p>Simon Warren's 100 climbs (and other related books) are a bit of a bible for UK riders seeking tough climbs. He's also got a blog with some decent content.</p>
+
+                        <a href="https://www.epicroadrides.com/"><h5>Epic Road Rides</h5></a>
+                        <p>An info packed site covering a massive variety of locations across Europe, including the UK. They've put a lot of effort into providing information to complete a whole trip as well as some sample routes.</p>
+
+                        <h2 class="mt-4"><span id="orgs"></span>Organisations</h2>
+
+                        <a href="https://www.britishcycling.org.uk/"><h5>British Cycling</h5></a>
+                        <p>The governing body for cycling in the UK. The site is a good resource to find affiliated UK clubs and has great training resources as well</p>
+
+                        <a href="https://www.cyclinguk.org/"><h5>Cycling UK aka Cyclist's Touring Club</h5></a>
+                        <p>Cycling UK or CTC is a charity/ members organisation with lots of non-competitive touring focused riding groups, including the first club I was a member of, <a href="https://www.cyclinguk.org/local-groups/peterborough">CTC Peterborough</a></p>
+                        
+                        <h2 class="mt-4"><span id="reviews"></span>Reviews and Magazines</h2>
+
+                        <a href="https://www.road.cc"><h5>Road.cc</h5></a>
+                        <p>A very good site reviewing a large array of cycling products</p>
+
+                        <h2 class="mt-4"><span id="youtube"></span>Podcasts and Youtube</h2>
+                        <p>Youtube can unfortunately attract a certain type that many find irritating but here's a few I enjoy</p>
+
+                        <a href="https://www.youtube.com/channel/UC1sTqWskIXqSItyojGhXPyQ"><h5>The Lanterne Rouge</h5></a>
+                        <p>Great Podcast and <a href="https://www.youtube.com/channel/UC77UtoyivVHkpApL0wGfH5w">Youtube Channel</a>. My favourite race analysis by far, really thorough, insightful and humerous content.</p>
+
+                        <a href="https://www.youtube.com/channel/UCMsCABV6MnhxGgRmhxVs62A"><h5>The Col Collective</h5></a>
+                        <p>The Col Collective videos are as inspiring as they are well made and presented. It's impossible to watch them without wanting to throw your bike in the back of the car and drive all the way to the alps.</p>
+
+                    </div>
+                </div>
+{% endblock content %}
