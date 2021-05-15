@@ -1,4 +1,8 @@
 {% extends "BASE.html" %}
+    {% block extrahead %}
+        <title>Bad Ideas on Bikes: {{post.title}}</title>
+        <meta name="description" content="{{ post.leader }}">
+    {% endblock extrahead %}
     {% block content %}
         <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}" class="img-fluid" alt="Responsive image">
                 <div class="row pt-4">
