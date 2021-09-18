@@ -38,6 +38,9 @@
                   <li class="nav-item {% if request.endpoint == 'main.linksPage' %} active {% endif %}">
                     <a class="nav-link bebas" href="{{ url_for('main.linksPage') }}">Links</a>
                   </li>
+                  <li class="nav-item {% if request.endpoint == 'main.contactPage' %} active {% endif %}">
+                    <a class="nav-link bebas" href="{{ url_for('main.contactPage') }}">Contact</a>
+                  </li>
                 </ul>
                   <ul class="navbar-nav ml-auto">
                       {% if current_user.is_authenticated %}
@@ -81,7 +84,8 @@
                         <a class="text-light text-decoration-none mr-2" href="{{ url_for('main.aboutPage') }}">About</a>
                         <a class="text-light text-decoration-none mr-2" href="{{ url_for('routes.routesPage') }}">Routes</a>
                         <a class="text-light text-decoration-none mr-2" href="{{ url_for('reviews.reviewPage') }}">Reviews</a>
-                        <a class="text-light" href="">Links</a>
+                        <a class="text-light text-decoration-none mr-2" href="{{ url_for('main.contactPage') }}">Contact</a>
+                        <a class="text-light text-decoration-none mr-2" href="{{ url_for('main.linksPage') }}">Links</a>
                     </div>
                     <div class="col-md-2"></div>
                 </div>

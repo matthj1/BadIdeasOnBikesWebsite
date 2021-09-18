@@ -15,3 +15,9 @@ Thanks,
 Bad Ideas on Bikes
 '''
     mail.send(msg)
+
+
+def send_contact_message(name, email, message):
+    msg = Message("Bad Ideas on Bikes", sender="Joe Matthews", recipients=["joematthewsphotography@gmail.com"])
+    msg.body = f"New message from {name}, {email}:\n {message}"
+    mail.send(msg)

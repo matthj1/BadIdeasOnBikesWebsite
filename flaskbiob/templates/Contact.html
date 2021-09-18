@@ -1,0 +1,76 @@
+{% extends "BASE.html" %}
+{% block extrahead %}
+        <title>Bad Ideas on Bikes: About</title>
+        <meta name="description" content="About me, the author of Bad Ideas on Bikes. Bad Ideas on Bikes aims to bring you some of the best bike routes in the UK. From steep hills and epic views, to quiet backwaters, there's epic routes to be ridden across the country">
+{% endblock extrahead %}
+{% block content %}
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h1>Contact Me</h1>
+                        <p class="lead">Have you ridden one of my routes? Was it great? Was it terrible? Did your legs fall off or did you hardly break a sweat? Let me know!</p>
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {{form.hidden_tag() }}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">
+                                    Contact Bad Ideas on Bikes
+                                </legend>
+                                <div class="form-group">
+                                    {{ form.name.label(class="form-control-label") }}
+                
+                                    {% if form.name.errors %}
+                                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.name(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.email.label(class="form-control-label") }}
+                
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.message.label(class="form-control-label") }}
+                
+                                    {% if form.message.errors %}
+                                        {{ form.message(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.message.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.message(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>                
+                                    {% if form.recaptcha.errors %}
+                                        {{ form.recaptcha(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.recaptcha.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.recaptcha }}
+                                    {% endif %}
+                            </fieldset>
+                                <div class="form-group">
+                                    {{form.submit(class="btn btn-outline-info")}}
+                                </div>
+                        </form>
+                    </div>
+                </div>
+{% endblock content %}

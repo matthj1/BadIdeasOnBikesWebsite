@@ -1,6 +1,11 @@
-from flask import Blueprint
+from flask import Blueprint, flash
 from flask import render_template, request
+from flask.helpers import url_for
+from werkzeug.utils import redirect
 from flaskbiob.models import Posts
+from flaskbiob.main.forms import ContactForm
+from flaskbiob.main.utils import send_contact_message
+from smtplib import SMTPAuthenticationError
 
 main = Blueprint("main", __name__)
 
@@ -21,3 +26,18 @@ def aboutPage():
 @main.route("/links")
 def linksPage():
     return render_template("Links.html")
+
+
+@main.route("/contact", methods=["GET", "POST"])
+def contactPage():
+    form = ContactForm()
+    if form.validate_on_submit():
+        try:
+            send_contact_message(form.name.data, form.email.data, form.message.data)
+            flash("Your message has been sent!", "success")
+            return redirect(url_for("main.homePage"))
+        except Exception as E:
+            print(E)
+            flash("There was a problem sending your message, please try again")
+            return redirect(url_for("main.homePage"))
+    return render_template("Contact.html", form=form)
